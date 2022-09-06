@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'users',
         'passwords' => 'users',
     ],
 
@@ -35,10 +35,26 @@ return [
     |
     */
 
+    //ガードの設定
     'guards' => [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'users' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'artists' => [
+            'driver' => 'session',
+            'provider' => 'artists',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ],
     ],
 
@@ -59,11 +75,23 @@ return [
     |
     */
 
+    //プロバイダの設定
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+
+        'artists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Artist::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
@@ -90,8 +118,22 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
-            'throttle' => 60,
+            'expire' => 60, //期限60日間
+            'throttle' => 60, //ログインに失敗した時に60秒ログインできない
+        ],
+
+        'owners' => [
+            'provider' => 'artists',
+            'table' => 'artist_password_resets',
+            'expire' => 60, //期限60日間
+            'throttle' => 60, //ログインに失敗した時に60秒ログインできない
+        ],
+
+        'admin' => [
+            'provider' => 'admin',
+            'table' => 'admin_password_resets',
+            'expire' => 60, //期限60日間
+            'throttle' => 60, //ログインに失敗した時に60秒ログインできない
         ],
     ],
 

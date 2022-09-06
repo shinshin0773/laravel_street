@@ -18,6 +18,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/dashboard';
+    public const ARTIST_HOME = '/artist/dashboard';
+    public const ADMIN_HOME = '/admin/dashboard';
 
     /**
      * The controller namespace for the application.
@@ -33,19 +35,38 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    //サービスプロバイダが読み込まれた後に実行
     public function boot()
     {
         $this->configureRateLimiting();
 
         $this->routes(function () {
+            //フロント側を全てJavascriptで作るパターン
             Route::prefix('api')
                 ->middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware('web')
+            //Userのルート情報 ->group()グループの中の全てに割り当てる as()別名
+            Route::prefix('/')
+                ->as('user.')
+                ->middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+
+            //Artistのルート情報 ->group()グループの中の全てに割り当てる ::prefix()頭にartistというURLがつく as()別名
+            Route::prefix('artist')
+                ->as('artist.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/artist.php'));
+
+            //Adminのルート情報 ->group()グループの中の全てに割り当てる ::prefix()頭にartistというURLがつく as()別名
+            Route::prefix('admin')
+                ->as('admin.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));
         });
     }
 
