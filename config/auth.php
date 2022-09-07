@@ -122,7 +122,7 @@ return [
             'throttle' => 60, //ログインに失敗した時に60秒ログインできない
         ],
 
-        'owners' => [
+        'artists' => [
             'provider' => 'artists',
             'table' => 'artist_password_resets',
             'expire' => 60, //期限60日間

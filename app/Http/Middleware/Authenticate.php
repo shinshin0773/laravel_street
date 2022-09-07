@@ -22,8 +22,8 @@ class Authenticate extends Middleware
     {
 
         if (! $request->expectsJson()) {
-            //owner 関連の全てのページで登録されていなかったらログインページに飛ばす
-            if(Route::is('owner.*')){
+            //artist 関連の全てのページで登録されていなかったらログインページに飛ばす
+            if(Route::is('artist.*')){
                 return route($this->artist_route);
             } elseif(Route::is('admin.*')){ //admin関連の全てのページで登録されていなかったらログインページに飛ばす
                 return route($this->admin_route);

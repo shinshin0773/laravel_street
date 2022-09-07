@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen" style="background-color: rgba(44, 88, 125, 0.6)">
             @if(auth('admin')->user())
                 @include('layouts.admin-navigation')
             @elseif(auth('artists')->user())
@@ -28,7 +28,7 @@
 
 
             <!-- Page Heading -->
-            <header class="bg-white shadow">
+            <header style="background-color: rgba(44, 88, 125, 0.9)">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>

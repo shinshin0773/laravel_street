@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\ArtistProfile;
 
 
 class Artist extends Authenticatable
@@ -40,4 +41,9 @@ class Artist extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function artistProfile()
+    {
+        return $this->hasOne(ArtistProfile::class); //紐づいているモデルを取得する
+    }
 }
