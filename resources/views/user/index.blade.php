@@ -12,7 +12,7 @@
                     <div class="flex flex-wrap">
                         @foreach($posts as $post)
                        <div class="w-1/4 md:p-4">
-                           {{-- <a href="{{ route('owner.products.edit',['product' => $product->id])}}"> --}}
+                           <a href="{{ route('user.items.show',['item' => $post->id ])}}">
                            <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
                                <img src="{{asset($post->file_path)}}" alt="サムネイル" style="width: 224px; height: 149.328px">
                                <div class="mt-3">

@@ -19,9 +19,12 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth:users'])->name('dashboard');
+Route::get('/',[ItemController::class,'index'])->name('items.index');
+Route::get('show/{item}',[ItemController::class, 'show'])->name('items.show');
+
+// Route::get('/dashboard', function () {
+//     return view('user.dashboard');
+// })->middleware(['auth:users'])->name('dashboard');
 
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 

@@ -15,4 +15,13 @@ class ItemController extends Controller
         // dd($posts);
         return view('user.index', compact('posts'));
     }
+
+    //ルートパラメーターで$idが入ってくる
+    public function show($id)
+    {
+        //一つだけ取得
+        $post = Posts::findOrFail($id);
+
+        return view('user.show', compact('post'));
+    }
 }
