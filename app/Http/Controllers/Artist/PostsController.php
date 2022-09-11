@@ -156,6 +156,11 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Posts::findOrFail($id)->delete();
+
+        return redirect()
+        ->route('artist.posts.index')
+        ->with(['message' => '投稿を削除しました。',
+        'status' => 'alert']);
     }
 }
