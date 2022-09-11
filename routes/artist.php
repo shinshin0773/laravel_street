@@ -24,9 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('artist.welcome');
-});
+// Route::get('/', function () {
+//     return view('artist.welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('artist.dashboard');
