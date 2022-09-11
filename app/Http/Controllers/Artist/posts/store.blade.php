@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Post') }}
+            {{ __('Posts') }}
         </h2>
     </x-slot>
 
@@ -14,22 +14,16 @@
                             <button onclick="location.href='{{ route('artist.posts.create')}}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">新規登録する</button>
                         </div>
                         <div class="flex flex-wrap">
-                         @foreach($posts as $post)
+                        {{-- @foreach($posts as $post) --}}
                         <div class="w-1/4 md:p-4">
-                            {{-- <a href="{{ route('owner.products.edit',['product' => $product->id])}}"> --}}
-                            <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
-                                <img src="{{asset($post->file_path)}}" alt="サムネイル">
-                                <div class="mt-3">
-                                    <div class="text-gray-700">名前：{{ $post->name }}</div>
-                                    <div class="text-gray-700">内容：{{ $post->information }}</div>
-                                    <div class="text-gray-700">場所：{{ $post->place }}</div>
-                                    <div class="text-gray-700">開催時刻：<br>{{ $post->holding_time }}</div>
-                                    <div class="text-gray-700">終了時刻：<br>{{ $post->finish_time }}</div>
-                                </div>
+                            {{-- <a href="{{ route('artist.posts.edit',['post' => $post->id])}}"> --}}
+                            <div class="border rounded-md p-2 md:p-4">
+                                {{-- <x-thumbnail filename="{{ $post->imageFirst->filename ?? '' }}" type="products" /> --}}
+                                {{-- <div class="text-gray-700">{{ $post->name }}</div> --}}
                            </div>
                         </a>
                         </div>
-                    @endforeach
+                    {{-- @endforeach --}}
                 </div>
 
                 </div>

@@ -15,13 +15,15 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('artist_profile_id')
+            ->constrained();
             $table->string('name');
             $table->text('information');
             $table->string('place');
             // $table->integer('sort_order')->nullable();
-            $table->string('file_name');
-            $table->foreignId('artist_profile_id')
-            ->constrained();
+            $table->string('file_path')->nullable();
+            $table->dateTime('holding_time');
+            $table->dateTime('finish_time');
             $table->timestamps();
         });
     }
