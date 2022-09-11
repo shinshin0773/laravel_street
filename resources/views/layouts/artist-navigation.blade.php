@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('artist.dashboard')" :active="request()->routeIs('artist.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('artist.profile.index')" :active="request()->routeIs('artist.profile.index')">
+                        Profile
+                    </x-nav-link>
+                    <x-nav-link :href="route('artist.posts.index')" :active="request()->routeIs('artist.posts.index')">
+                        Post
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -65,6 +71,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('artist.dashboard')" :active="request()->routeIs('artist.dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('artist.profile.index')" :active="request()->routeIs('artist.profile.index')">
+                Profile
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('artist.posts.index')" :active="request()->routeIs('artist.posts.index')">
+                Post
             </x-responsive-nav-link>
         </div>
 

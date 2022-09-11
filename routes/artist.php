@@ -8,6 +8,8 @@ use App\Http\Controllers\Artist\Auth\NewPasswordController;
 use App\Http\Controllers\Artist\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Artist\Auth\RegisteredUserController;
 use App\Http\Controllers\Artist\Auth\VerifyEmailController;
+use App\Http\Controllers\Artist\ArtistProfileController;
+use App\Http\Controllers\Artist\PostsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -29,6 +31,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('artist.dashboard');
 })->middleware(['auth:artists'])->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
+
+Route::resource('profile', ArtistProfileController::class)
+->middleware(['auth:artists'])->except(['show']);
+
+Route::resource('posts', PostsController::class)
+->middleware(['auth:artists'])->except(['show']);
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
