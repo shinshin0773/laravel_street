@@ -8,10 +8,14 @@ use App\Models\Posts;
 
 class ItemController extends Controller
 {
-    public function index()
+    //formで渡ってきた検索順をRequestで受け取る
+    public function index(Request $request)
     {
+        // dd($request->keyword);
         //全件取得
-        $posts = Posts::all();
+        $posts = Posts::sortOrder($request->sort)
+        ->searchKeyword($request->keyword)
+        ->get();
         // dd($posts);
         return view('user.index', compact('posts'));
     }
