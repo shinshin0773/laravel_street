@@ -12,6 +12,7 @@ class ItemController extends Controller
     {
         //全件取得
         $posts = Posts::all();
+        // dd($posts);
         return view('user.index', compact('posts'));
     }
 }

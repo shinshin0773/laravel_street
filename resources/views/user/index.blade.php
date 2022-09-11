@@ -12,28 +12,21 @@
                     <div class="flex flex-wrap">
                         @foreach($posts as $post)
                        <div class="w-1/4 md:p-4">
-                           <a href="">
+                           {{-- <a href="{{ route('owner.products.edit',['product' => $product->id])}}"> --}}
                            <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
-                               <img src="{{asset($post->file_path)}}" alt="サムネイル">
+                               <img src="{{asset($post->file_path)}}" alt="サムネイル" style="width: 224px; height: 149.328px">
                                <div class="mt-3">
                                    <div class="text-gray-700">名前：{{ $post->name }}</div>
                                    <div class="text-gray-700">内容：{{ $post->information }}</div>
                                    <div class="text-gray-700">場所：{{ $post->place }}</div>
                                    <div class="text-gray-700">開催時刻：<br>{{ $post->holding_time }}</div>
                                    <div class="text-gray-700">終了時刻：<br>{{ $post->finish_time }}</div>
-                                   <form id="delete_{{$post->id}}" method="post" action="{{ route('artist.posts.destroy',['post' => $post->id ])}}">
-                                       @csrf
-                                       @method('delete')
-                                       <div class="p-2 w-full flex justify-around mt-4">
-                                           <a href="#" data-id="{{ $post->id }}" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 px-4 focus:outline-none hover:bg-red-500 rounded">削除する</a>
-                                       </div>
-                                  </form>
                                </div>
                           </div>
                        </a>
                        </div>
                    @endforeach
-                  </div>
+               </div>
                 </div>
             </div>
         </div>
