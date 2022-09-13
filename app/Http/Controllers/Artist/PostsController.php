@@ -43,8 +43,7 @@ class PostsController extends Controller
         $posts = Artist::findOrFail(Auth::id())->artistProfile->Posts;
         // dd($posts);
 
-        return view('artist.posts.index',
-        compact('posts'));
+        return view('artist.posts.index',compact('posts'));
     }
 
     /**

@@ -15,10 +15,14 @@ class CreateArtistProfilesTable extends Migration
     {
         Schema::create('artist_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id')->constrained();
+            $table->foreignId('artist_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->string('name');
-            $table->text('information');
-            $table->string('filename');
+            $table->text('information')->nullable();
+            $table->string('sns_account')->nullable();
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }

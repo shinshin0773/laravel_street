@@ -46,6 +46,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::ARTIST_HOME);
+        return view('artist.profile.create');
     }
 }

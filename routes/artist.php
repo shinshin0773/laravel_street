@@ -28,12 +28,20 @@ use Illuminate\Support\Facades\Route;
 //     return view('artist.welcome');
 // });
 
+Route::prefix('profile')->
+    middleware('auth:artists')->group(function(){
+        Route::get('index', [ArtistProfileController::class,'index'])->name('profile.index');
+        Route::get('edit/{profile}',[ArtistProfileController::class,'edit'])->name('profile.edit');
+        Route::post('update/{profile}',[ArtistProfileController::class,'update'])->name('profile.update');
+});
+
+
 Route::get('/dashboard', function () {
     return view('artist.dashboard');
 })->middleware(['auth:artists'])->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
-Route::resource('profile', ArtistProfileController::class)
-->middleware(['auth:artists'])->except(['show']);
+// Route::resource('profile', ArtistProfileController::class)
+// ->middleware(['auth:artists'])->except(['show']);
 
 Route::resource('posts', PostsController::class)
 ->middleware(['auth:artists'])->except(['show']);

@@ -35,6 +35,17 @@ class ArtistProfile extends Model
     //     });
     // }
 
+    protected $fillable = [
+        'id',
+        'artist_id',
+        'name',
+        'information',
+        'sns_account',
+        'file_path',
+        'created_at',
+        'updated_at',
+    ];
+
     public function artist()
     {
         return $this->belongsTo(Artist::class); //紐づいているモデルを取得する
