@@ -12,23 +12,27 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen" style="background-color: rgba(44, 88, 125, 0.6)">
+        <div class="min-h-screen content">
+            <div class="bg-color">
             @if(auth('admin')->user())
                 @include('layouts.admin-navigation')
             @elseif(auth('artists')->user())
                 @include('layouts.artist-navigation')
             @elseif(auth('users')->user())
                 @include('layouts.user-navigation')
+            @else
+                @include('layouts.guest-navigation')
             @endif
 
 
             <!-- Page Heading -->
-            <header style="background-color: rgba(44, 88, 125, 0.9)">
+            <header style="background-color: rgb(0,0,0); border-top:1px groove rgb(0,128,128)">
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
@@ -38,6 +42,7 @@
             <main>
                 {{ $slot }}
             </main>
+        </div>
         </div>
     </body>
 </html>

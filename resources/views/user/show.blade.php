@@ -36,6 +36,7 @@
                                   <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
                                   <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
+                                <img src="{{ asset($post->artistprofile->file_path) }}" alt="アイコン画像" srcset="" style="border-radius: 50%; height:100%">
                               </div>
                               <div class="flex flex-col items-center text-center justify-center">
                                 <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{{$post->artistprofile->name}}</h2>

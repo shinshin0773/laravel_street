@@ -33,9 +33,10 @@ class Posts extends Model
     public function scopeSortOrder($query, $sortOrder)
     {
         //おすすめ順
-        // if($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['recommend']){
-        //     return $query->orderBy('RANDOM()');
-        //  }
+        if($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['recommend']){
+            return $query->inRandomOrder();
+        }
+
          //新しい順
          if($sortOrder === \Constant::SORT_ORDER['later']){
             return $query->orderBy('posts.created_at', 'desc') ;

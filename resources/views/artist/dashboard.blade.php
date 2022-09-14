@@ -45,6 +45,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mt-10">
+                        <p>ヒートマップ</p>
+                        <img src="{{ asset('images/heartmap.png') }}">
+                    </div>
             </div>
         </div>
     </div>

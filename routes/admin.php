@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArtistsController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
@@ -25,6 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.welcome');
 });
+
+//adminで認証していたら表示する
+Route::resource('artists', ArtistsController::class)
+->middleware('auth:admin');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
