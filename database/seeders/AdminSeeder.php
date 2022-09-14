@@ -15,6 +15,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        //->insert()ダミーデータを作成できる
         DB::table('admins')->insert([
             'name' => 'test',
             'email' => 'test@test.com',

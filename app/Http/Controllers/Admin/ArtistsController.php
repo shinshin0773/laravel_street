@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Artist; //エロクアント
+use Illuminate\Support\Facades\DB; //クエリビルダ
+use Carbon\Carbon; //日付ライブラリ
 
 class ArtistsController extends Controller
 {
@@ -21,7 +24,24 @@ class ArtistsController extends Controller
 
     public function index()
     {
-        dd('オーナー一覧です');
+        // $date_now = Carbon::now();
+        // $date_parse = Carbon::parse(now());
+        // echo $date_now;
+        // echo $date_parse;
+        // echo $date_now->year; //年だけ取得
+
+        // $e_all = Artist::all(); //エロくアントで全て取得
+        // $q_get = DB::table('artists')->select('name','created_at')->get(); //nameを指定して取得
+        // $q_first = DB::table('artists')->select('name')->first(); //一つ目のデータだけ取ってくる
+
+        // $c_test = collect([
+        //     'name' => 'テスト'
+        // ]);
+
+         // var_dump($q_first);
+        // dd($e_all, $q_get, $q_first, $c_test);
+        $artists = Artist::select('name','email','created_at')->get();
+        return view('admin.artists.index',compact('artists'));
     }
 
     /**

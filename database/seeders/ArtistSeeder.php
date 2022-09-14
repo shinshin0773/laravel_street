@@ -22,13 +22,13 @@ class ArtistSeeder extends Seeder
                 'name' => 'Shin',
                 'email' => 'test1@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
-                'created_at' => '2021/01/01 11:11:11'
+                'created_at' => '2022/07/03 11:11:11'
             ],
             [
                 'name' => 'Hide',
                 'email' => 'test2@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
-                'created_at' => '2021/01/01 11:11:11'
+                'created_at' => '2022/05/01 11:11:11'
             ],
             [
                 'name' => 'Daitou',
