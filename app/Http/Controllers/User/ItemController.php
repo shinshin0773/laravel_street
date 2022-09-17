@@ -15,8 +15,9 @@ class ItemController extends Controller
         //全件取得
         $posts = Posts::sortOrder($request->sort)
         ->searchKeyword($request->keyword)
-        ->get();
-        // dd($posts);
+        ->searchDate($request->holdingDate)
+        ->paginate(8);
+
         return view('user.index', compact('posts'));
     }
 
@@ -27,5 +28,22 @@ class ItemController extends Controller
         $post = Posts::findOrFail($id);
 
         return view('user.show', compact('post'));
+    }
+
+    public function showMap($id)
+    {
+        return view('user.showMap');
+    }
+
+    public function like($id)
+    {
+        $post = Posts::findOrFail($id);
+
+        $post->like = $post->like + 1;
+
+        $post->save();
+
+        return redirect()
+        ->back();
     }
 }

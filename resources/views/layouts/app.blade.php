@@ -20,9 +20,9 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen content">
             <div class="bg-color">
-            @if(auth('admin')->user())
+            @if(request()->is('admin*'))
                 @include('layouts.admin-navigation')
-            @elseif(auth('artists')->user())
+            @elseif(request()->is('artist*'))
                 @include('layouts.artist-navigation')
             @elseif(auth('users')->user())
                 @include('layouts.user-navigation')

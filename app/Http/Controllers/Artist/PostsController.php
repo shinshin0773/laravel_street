@@ -85,6 +85,8 @@ class PostsController extends Controller
         //データベースに保存する処理
         try{
             DB::transaction(function() use($request) {
+
+                // dd($request->file());
                 //画像アップロード処理
                 $dir = 'postImage';
 

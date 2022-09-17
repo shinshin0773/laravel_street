@@ -40,7 +40,7 @@ class ArtistsController extends Controller
 
          // var_dump($q_first);
         // dd($e_all, $q_get, $q_first, $c_test);
-        $artists = Artist::select('name','email','created_at')->get();
+        $artists = Artist::select('name','email','created_at','id')->paginate(3);
         return view('admin.artists.index',compact('artists'));
     }
 
@@ -107,6 +107,24 @@ class ArtistsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Artist::findOrFail($id)->delete();//ソフトデリート
+
+        return redirect()
+        ->route('admin.artists.index')
+        ->with(['message' => 'オーナー情報を削除しました',
+        'status' => 'alert']);
+    }
+
+    public function expiredArtistIndex(){
+        $expiredArtists = Artist::onlyTrashed()->get(); //ソフトデリートしたアーティストだけ
+        return view('admin.expired-artists', compact('expiredArtists'));
+    }
+
+    public function expiredArtistDestroy($id){
+        Artist::onlyTrashed()->findOrFail($id)->forceDelete();
+        return redirect()
+        ->route('admin.expired-artists.index')
+        ->with(['message' => 'アーティストを完全に削除しました',
+        'status' => 'alert']);
     }
 }

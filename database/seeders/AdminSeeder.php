@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
     {
         //->insert()ダミーデータを作成できる
         DB::table('admins')->insert([
-            'name' => 'test',
+            'name' => '管理者Shin',
             'email' => 'test@test.com',
             'password' => Hash::make('password123'), //Hashは暗号化
             'created_at' => '2021/01/01 11:11:11'

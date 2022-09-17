@@ -19,8 +19,15 @@ class Posts extends Model
         'holding_time',
         'finish_time',
         'file_path',
+        'like',
         'created_at',
         'updated_at',
+    ];
+
+    /** @var array Datetime型として扱うカラム */
+    protected $casts = [
+        'holding_time' => 'datetime:Y/m/d',
+        'finish_time' => 'datetime:Y/m/d',
     ];
 
     public function artistProfile()
@@ -74,5 +81,16 @@ class Posts extends Model
             // dd('nullでした');
             return;
         }
+    }
+
+    public function scopeSearchDate($query, $date)
+    {
+        if($date)
+        {
+            $query->where('posts.holding_time','like','%'.$date.'%');
+            return $query;
+        } else {
+        return;
+    }
     }
 }

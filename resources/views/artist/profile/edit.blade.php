@@ -36,7 +36,7 @@
                             @else
                              <img src="{{ asset($profile->file_path)}}" style="width: 13rem">
                             @endif
-                            <input type="file" id="profileIcon" name="image">
+                            <input type="file" id="profileIcon" name="image" value="{{ asset($profile->file_path) }}">
                         </div>
                         <div>
                             {{-- @foreach($artist_profile as $profile)

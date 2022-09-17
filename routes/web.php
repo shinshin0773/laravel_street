@@ -21,6 +21,11 @@ Route::get('/', function () {
 
 Route::get('/',[ItemController::class,'index'])->name('items.index');
 Route::get('show/{item}',[ItemController::class, 'show'])->name('items.show');
+Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.showMap');
+Route::post('show/{item}/like',[ItemController::class, 'like'])->name('items.like');
+
+
+// Route::get('show/{item}',[ItemController::class, 'good'])->name('items.good');
 
 // Route::get('/dashboard', function () {
 //     return view('user.dashboard');

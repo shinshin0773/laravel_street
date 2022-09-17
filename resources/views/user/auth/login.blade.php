@@ -2,7 +2,7 @@
     <x-auth-card>
         ユーザー用
         <x-slot name="logo">
-            <div class="w-44">
+            <div style="width: 417px;margin-left: 135px;">
                 <a>
                     <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
                 </a>

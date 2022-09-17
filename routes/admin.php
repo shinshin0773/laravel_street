@@ -23,13 +23,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.welcome');
-});
+// Route::get('/', function () {
+//     return view('admin.welcome');
+// });
 
 //adminで認証していたら表示する
 Route::resource('artists', ArtistsController::class)
-->middleware('auth:admin');
+->middleware('auth:admin')->except(['show']);
+
+Route::prefix('expired-artists')->
+    middleware('auth:admin')->group(function(){
+        Route::get('index', [ArtistsController::class,'expiredArtistIndex'])->name('expired-artists.index');
+        Route::post('destroy/{artist}',[ArtistsController::class, 'expiredArtistDestroy'])->name('expired-artists.destroy');
+});
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

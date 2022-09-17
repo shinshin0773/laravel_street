@@ -115,12 +115,17 @@ class ArtistProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+         //画像アップロード処理
+        $dir = 'postImage';
+        $file_name = $request->image->getClientOriginalName();
+        $file_path = 'storage/' . $dir . '/' . $file_name;
+
         // dd($request);
         $profile = ArtistProfile::findOrFail($id);
         $profile->name = $request->name;
         $profile->information = $request->information;
         $profile->sns_account = $request->sns_account;
-        $profile->file_path = $request->file_path;
+        $profile->file_path = $file_path;
 
         //保存することができる
         $profile->save();
