@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('profile')->
     middleware('auth:artists')->group(function(){
         Route::get('index', [ArtistProfileController::class,'index'])->name('profile.index');
+        Route::get('create', [ArtistProfileController::class,'create'])->name('profile.create');
+        Route::get('store', [ArtistProfileController::class,'store'])->name('profile.store');
         Route::get('edit/{profile}',[ArtistProfileController::class,'edit'])->name('profile.edit');
         Route::post('update/{profile}',[ArtistProfileController::class,'update'])->name('profile.update');
 });

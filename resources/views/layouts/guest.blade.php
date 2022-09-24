@@ -20,5 +20,7 @@
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
+        <!-- "YOUR_API_KEY" の部分に、作成したAPIキーを貼り付ける -->
+
     </body>
 </html>
