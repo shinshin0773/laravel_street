@@ -74,67 +74,68 @@
     var lat = 35.729493379635535;
     var lng = 139.71086479574538;
 
-    document.getElementById('lat').value = lat;
-    document.getElementById('lng').value = lng;
-
-
     window.initMap = () => {
 
-    let map;
+        let map;
 
-    const area = document.getElementById("map"); // マップを表示させるHTMLの箱
-    // マップの中心位置(例:原宿駅)
-    const center = {
-    lat: 35.224221711180704,
-    lng: 135.13545327807356,
-    };
+        const area = document.getElementById("map"); // マップを表示させるHTMLの箱
+        // マップの中心位置(例:原宿駅)
+        const center = {
+        lat: 35.224221711180704,
+        lng: 135.13545327807356,
+        };
 
-    //マップ作成
-    map = new google.maps.Map(area, {
-    center,
-    zoom: 17,
-    });
+        //マップ作成
+        map = new google.maps.Map(area, {
+        center,
+        zoom: 17,
+        });
 
-    //マーカーオプション設定👇追記
-    const markerOption = {
-        position: center, // マーカーを立てる位置を指定
-        map: map, // マーカーを立てる地図を指定
-        icon: {
-        // url: '../../../public/images/icon1.png'// お好みの画像までのパスを指定
-        // scaledSize: new google.maps.Size(30, 30) //👈追記
+        //マーカーオプション設定👇追記
+        const markerOption = {
+            position: center, // マーカーを立てる位置を指定
+            map: map, // マーカーを立てる地図を指定
+            // icon: {
+            // // url: '../../../public/images/icon1.png'// お好みの画像までのパスを指定
+            // // scaledSize: new google.maps.Size(30, 30) //👈追記
+            // }
         }
+
+        //マーカー作成
+        // const marker = new google.maps.Marker(markerOption);
+
+        document.getElementById('lat').value = lat;
+        document.getElementById('lng').value = lng;
+        //初期マーカー
+        marker = new google.maps.Marker({
+            map: map, position: new google.maps.LatLng(lat, lng),
+        });
+
+        //クリックイベント
+        map.addListener('click', function(e) {
+            clickMap(e.latLng, map);
+        });
     }
-
-    //マーカー作成
-    const marker = new google.maps.Marker(markerOption);
-
-     //クリックイベント
-    map.addListener('click', function(e) {
-        clickMap(e.latLng, map);
-    });
-    }
-
 
     function clickMap(geo, map) {
-    lat = geo.lat();
-    lng = geo.lng();
+        lat = geo.lat();
+        lng = geo.lng();
 
-    //小数点以下6桁に丸める場合
-    //lat = Math.floor(lat * 1000000) / 1000000);
-    //lng = Math.floor(lng * 1000000) / 1000000);
+        //小数点以下6桁に丸める場合
+        //lat = Math.floor(lat * 1000000) / 1000000);
+        //lng = Math.floor(lng * 1000000) / 1000000);
 
-    document.getElementById('lat').value = lat;
-    document.getElementById('lng').value = lng;
+        document.getElementById('lat').value = lat;
+        document.getElementById('lng').value = lng;
+        //中心にスクロール
+        map.panTo(geo);
 
-    //中心にスクロール
-    map.panTo(geo);
-
-    //マーカーの更新
-    marker.setMap(null);
-    marker = null;
-    marker = new google.maps.Marker({
-        map: map, position: geo
-    });
-}
+        //マーカーの更新
+        marker.setMap(null);
+        marker = null;
+        marker = new google.maps.Marker({
+            map: map, position: geo
+        });
+   }
 </script>
 </x-app-layout>
