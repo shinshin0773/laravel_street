@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/',[ItemController::class,'index'])->name('items.index');
+Route::get('/placeMap',[ItemController::class,'placeMap'])->name('items.placeMap');
 Route::get('show/{item}',[ItemController::class, 'show'])->name('items.show');
 Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.showMap');
 Route::post('show/{item}/like',[ItemController::class, 'like'])->name('items.like');

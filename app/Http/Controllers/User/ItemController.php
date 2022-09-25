@@ -55,6 +55,17 @@ class ItemController extends Controller
         return view('user.showMap',compact('lat','lng'));
     }
 
+    public function placeMap()
+    {
+        // //一つだけ取得
+        $posts = Posts::all();
+
+        // $lat = $post->lat;
+        // $lng = $post->lng;
+
+        return view('user.placeMap',compact('posts'));
+    }
+
     public function like($id)
     {
         $post = Posts::findOrFail($id);
