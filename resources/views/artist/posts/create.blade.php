@@ -27,8 +27,6 @@
                             <div class="relative">
                                 <label for="place" class="leading-7 text-sm text-gray-600">開催場所 ※必須</label>
                                 <input onchange="getLatLng()" type="text" id="place" name="place" value="{{ old('plcea') }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                                <button id="searchGeo" onclick="search()">緯度経度変換</button>
-                                緯度：<input type="text" id="lat"><br>経度：<input type="text" id="lng">
                             </div>
                         </div>
                         <div class="p-2 w-1/2 mx-auto">
@@ -72,6 +70,9 @@
     </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4TRSMH7b3P1XSqpMikp5mrVhHHPG_ok0&callback=initMap" async defer></script>
 <script>
+    var marker = null;
+    var lat = 35.729493379635535;
+    var lng = 139.71086479574538;
     //住所から緯度と経度を読み取る処理↓
     function getLatLng() {
         // 入力した住所を取得します。
@@ -131,62 +132,52 @@
             });
         }
 
-        // console.log(getLatLng());
 
-        var lat = 35.729493379635535;
-        var lng = 139.71086479574538;
-        var marker = null;
+    //     window.initMap = () => {
+    //         const area = document.getElementById("map"); // マップを表示させるHTMLの箱
+    //         // マップの初期位置
+    //         var lat = 35.729493379635535;
+    //         var lng = 139.71086479574538;
+    //         var marker = null;
+    //         const center = {
+    //         lat: lat,
+    //         lng: lng,
+    //         };
+
+    //         //マップ作成
+    //         map = new google.maps.Map(area, {
+    //         center,
+    //         zoom: 17,
+    //         });
+
+    //         //マーカーオプション設定👇追記
+    //         const markerOption = {
+    //             position: center, // マーカーを立てる位置を指定
+    //             map: map, // マーカーを立てる地図を指定
+    //         }
+    //         //初期マーカー
+    //         marker = new google.maps.Marker({
+    //             map: map, position: new google.maps.LatLng(lat, lng),
+    //         });
+    // }
 
         function initMap(lat,lng) {
             var mapPosition = new google.maps.LatLng( lat,lng );//緯度経度
             var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 17,//ズーム
+            zoom: 19,//ズーム
             center: mapPosition
         });
             var marker = new google.maps.Marker({
-            position: mapPosition,
-            map: map
+                position: mapPosition,
+                map: map
             });
 
             map.addListener('click', function(e) {
                 clickMap(e.latLng, map, marker);
             });
-        }
+    }
 
-    // window.initMap = () => {
-    //     const area = document.getElementById("map"); // マップを表示させるHTMLの箱
-    //     // マップの初期位置
-    //     const center = {
-    //     lat: lat,
-    //     lng: lng,
-    //     };
-
-    //     //マップ作成
-    //     map = new google.maps.Map(area, {
-    //     center,
-    //     zoom: 17,
-    //     });
-
-    //     //マーカーオプション設定👇追記
-    //     const markerOption = {
-    //         position: center, // マーカーを立てる位置を指定
-    //         map: map, // マーカーを立てる地図を指定
-    //     }
-
-    //     document.getElementById('lat').value = lat;
-    //     document.getElementById('lng').value = lng;
-    //     //初期マーカー
-    //     marker = new google.maps.Marker({
-    //         map: map, position: new google.maps.LatLng(lat, lng),
-    //     });
-
-
-    //     map.addListener('click', function(e) {
-    //         clickMap(e.latLng, map);
-    //     });
-    // }
-
-    function clickMap(geo, map,marker) {
+    function clickMap(geo, map, marker) {
         lat = geo.lat();
         lng = geo.lng();
 
@@ -200,19 +191,14 @@
         map.panTo(geo);
 
         //マーカーの更新
-
         var mapPosition = new google.maps.LatLng( lat,lng );//緯度経度
 
-        // var marker = new google.maps.Marker({
-        //     position: mapPosition,
-        //     map: map
-        // });
-
         marker.setMap(null);
-        // marker = null;
+        marker = null;
         marker = new google.maps.Marker({
             map: map, position: mapPosition,
         });
+        initMap(lat,lng);
    }
 </script>
 </x-app-layout>
