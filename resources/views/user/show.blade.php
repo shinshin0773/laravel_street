@@ -22,12 +22,22 @@
                             <p class="text-gray-900 lg:text-lg">開催地：{{ $post->place }}</p>
                             <p class="text-gray-900 lg:text-lg">開催日時:{{ $post->holding_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">終了予定時間：{{ $post->finish_time->format('Y年m月d日 H時i分') }}</p>
+                            <p class="text-gray-900 lg:text-lg mb-8">いいね数 {{ $likeCount }}</p>
                             <div class="flex justify-center">
                               <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">行きたい</button>
-                              <form action="{{ route('user.items.like',$post->id)}}" method="POST">
-                                @csrf
-                                <input type="submit" value="いいね" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
-                              </form>
+                              @if (Auth::id())
+                                @if($likeCheck === false)
+                                <form action="{{ route('user.items.like',$post->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="いいね" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                </form>
+                                @else
+                                <form action="{{ route('user.items.unlike',$post->id)}}" method="POST">
+                                    @csrf
+                                    <input type="submit" value="いいねを取り消す" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                </form>
+                                @endif
+                              @endif
                               {{-- <button onclick="location.href='{{ route('user.items.good', $post->id )}}'"" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">いいね</button> --}}
                               <button class="ml-4 inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">シェア</button>
                             </div>

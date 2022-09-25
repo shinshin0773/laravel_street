@@ -41,4 +41,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function posts()
+    {
+        //->withPivotで中間テーブルのid,quantityも取得できる
+        return $this->belongsToMany(Posts::class, 'likes')
+        ->withPivot(['id']);
+        // 第2引数で中間テーブル名
+        // 中間テーブルのカラム取得
+        // デフォルトでは関連付けるカラム(user_idと product_id)のみ取得
+    }
 }

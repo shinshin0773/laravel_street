@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Likes;
 use Illuminate\Http\Request;
 use App\Models\Posts;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -27,7 +29,18 @@ class ItemController extends Controller
         //一つだけ取得
         $post = Posts::findOrFail($id);
 
-        return view('user.show', compact('post'));
+        $like = Likes::where('post_id', $id)->where('user_id', Auth::id())->first();
+
+        $likeCount = Likes::where('post_id', $id)->count();
+
+        //Likesテーブルに指定のポストIDにログイン中のユーザーIDがあれば
+        $likeCheck = false;
+        if($like) {
+            $likeCheck = true;
+        } else {
+            $likeCheck = false;
+        }
+        return view('user.show', compact('post','likeCheck','likeCount'));
 
     }
 
@@ -50,7 +63,26 @@ class ItemController extends Controller
 
         $post->save();
 
+        Likes::create([
+            'user_id' => Auth::id(),
+            'post_id' => $id,
+          ]);
+
         return redirect()
         ->back();
     }
+
+    public function unlike($id)
+    {
+        $post = Posts::findOrFail($id);
+
+        $post->like = $post->like - 1;
+
+        $post->save();
+
+        $like = Likes::where('post_id', $id)->where('user_id', Auth::id())->first();
+        $like->delete();
+
+        return redirect()->back();
+        }
 }

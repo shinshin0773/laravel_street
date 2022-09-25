@@ -95,4 +95,10 @@ class Posts extends Model
         return;
     }
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'likes')
+        ->withPivot(['id']);
+    }
 }
