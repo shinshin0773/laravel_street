@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->string('name');
             $table->text('information');
             $table->string('place');
+            $table->double('lat');
+            $table->double('lng');
             // $table->integer('sort_order')->nullable();
             $table->string('file_path')->nullable();
             $table->integer('like')->default(0);

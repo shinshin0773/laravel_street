@@ -25,11 +25,14 @@
 
     let map;
 
+    const postLat = {{ $lat }}
+    const postLng = {{ $lng }}
+
     const area = document.getElementById("map"); // マップを表示させるHTMLの箱
     // マップの中心位置(例:原宿駅)
     const center = {
-    lat: 35.224221711180704,
-    lng: 135.13545327807356,
+    lat: postLat,
+    lng: postLng,
     };
 
     //マップ作成

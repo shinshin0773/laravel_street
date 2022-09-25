@@ -99,6 +99,8 @@ class PostsController extends Controller
                     'artist_profile_id' => $request->profile_id,
                     'information' => $request->information,
                     'place' => $request->place,
+                    'lat' => $request->lat,
+                    'lng' => $request->lng,
                     'holding_time' => $request->holdingTime,
                     'finish_time' => $request->finishTime,
                     'file_path' => 'storage/' . $dir . '/' . $file_name ,

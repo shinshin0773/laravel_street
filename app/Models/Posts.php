@@ -16,6 +16,8 @@ class Posts extends Model
         'name',
         'information',
         'place',
+        'lat',
+        'lng',
         'holding_time',
         'finish_time',
         'file_path',
