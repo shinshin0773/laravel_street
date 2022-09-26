@@ -41,8 +41,6 @@ class ArtistProfileController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-
          // バリデーション
         //  $request->validate([
         //     'name' => 'required|string|max:50',
