@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        Auth::login($user = Artist::create([
+        Auth::guard('artists')->login($user = Artist::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),

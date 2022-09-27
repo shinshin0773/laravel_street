@@ -52,7 +52,7 @@ class ArtistProfileController extends Controller
         //データベースに保存する処理
         try{
             DB::transaction(function() use($request) {
-                // dd($request);
+                dd($request);
                 //画像アップロード処理
                 $dir = 'postImage';
 
@@ -60,6 +60,7 @@ class ArtistProfileController extends Controller
                 $file_name = $request->file('image')->getClientOriginalName();
 
                 $request->file('image')->storeAs('public/' . $dir, $file_name);
+
                 $profile = ArtistProfile::create([
                     'name' => $request->name,
                     'artist_id' => Auth::id(),

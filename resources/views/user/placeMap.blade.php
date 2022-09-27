@@ -25,13 +25,12 @@
     var marker = [];
     var infoWindow = [];
 
-    //コントローラーから全てのポスト取得
-    var postplace = @json($posts);
-
-    var markerData = postplace;
+    //postコントローラーから全てのポスト取得
+    var markerData = @json($posts);;
 
     function initMap() {
-
+         //ユーザーの現在位置を取得します・許可すればsuccess関数,許可しなければfail関数
+     navigator.geolocation.getCurrentPosition(success, fail);
         function success(pos) {
             var nowlat = pos.coords.latitude;
             var nowlng = pos.coords.longitude;
@@ -57,9 +56,9 @@
             for (var i = 0; i < markerData.length; i++) {
                     markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
                     marker[i] = new google.maps.Marker({ // マーカーの追加
-                    position: markerLatLng, // マーカーを立てる位置を指定
+                        position: markerLatLng, // マーカーを立てる位置を指定
                         map: map // マーカーを立てる地図を指定
-                });
+                    });
 
                 infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
                     content:
@@ -75,13 +74,13 @@
                     icon: 'https://images.app.goo.gl/4ep4rovy9wYffoXw8'
             });
             //マーカーオプション設定👇追記
-            // const markerOption = {
+            const markerOption = {
             //   position: center, // マーカーを立てる位置を指定
-            //   map: map, // マーカーを立てる地図を指定
-            //   icon: {
-            //     url: 'storage/app/public/non-icon.png'// お好みの画像までのパスを指定
-            //   }
-            // }
+              map: map, // マーカーを立てる地図を指定
+              icon: {
+                url: 'storage/app/public/透過アイコン.png' // お好みの画像までのパスを指定
+              }
+            }
 
             // マーカーにクリックイベントを追加
             function markerEvent(i) {
@@ -111,7 +110,8 @@
             for (var i = 0; i < markerData.length; i++) {
                     markerLatLng = new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']}); // 緯度経度のデータ作成
                     marker[i] = new google.maps.Marker({ // マーカーの追加
-                    position: markerLatLng, // マーカーを立てる位置を指定
+                        // markerOption,
+                        position: markerLatLng, // マーカーを立てる位置を指定
                         map: map // マーカーを立てる地図を指定
                 });
 
@@ -144,8 +144,7 @@
                 });
             }
     }
-     //ユーザーの現在位置を取得します・許可すればsuccess関数,許可しなければfail関数
-     navigator.geolocation.getCurrentPosition(success, fail);
+
   }
 
 

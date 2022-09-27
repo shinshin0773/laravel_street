@@ -27,14 +27,17 @@
     position: relative;
     padding-top: (465 / 1440 * 100%);
     height: 600px;
+
 }
 
 .map {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/Map.png');
+    background-color: gainsboro;
 }
 
 /* タブレットサイズ以上の時 */

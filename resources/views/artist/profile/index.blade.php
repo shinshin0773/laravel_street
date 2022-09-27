@@ -23,7 +23,7 @@
                             <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
                                 {{$profile->name}}
                             </h1>
-                            <p class="mb-8 leading-relaxed">{{$profile->information}}</p>
+                            <p class="mb-8 leading-relaxed">情報：{{$profile->information}}</p>
                             @if($profile->sns_account)
                               <p class="mb-8 leading-relaxed" style="font-size:1.3rem"><img src="{{ asset('images/sns-icon.png')}}" class="mr-2" style="width: 1.5rem; display:inline;">{{ $profile->sns_account }}</p>
                             @endif
