@@ -52,7 +52,6 @@ class ArtistProfileController extends Controller
         //データベースに保存する処理
         try{
             DB::transaction(function() use($request) {
-                dd($request);
                 //画像アップロード処理
                 $dir = 'postImage';
 
@@ -76,7 +75,7 @@ class ArtistProfileController extends Controller
 
         return redirect()
         ->route('artist.profile.index')
-        ->with(['message' => '投稿が完了しました。',
+        ->with(['message' => 'プロフィール登録が完了しました',
         'status' => 'info']);
 
     }
