@@ -48,6 +48,7 @@ class ArtistProfileController extends Controller
         //     // 'holding_time' => 'required|date|after:yesterday',
         //     // 'finish_time' => 'required|date|after:holding_time',
         // ]);
+        //
 
         //データベースに保存する処理
         try{
