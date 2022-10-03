@@ -14,7 +14,7 @@ class PostsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('Posts')->insert([
+        DB::table('posts')->insert([
             [
                 'name' => 'Shin',
                 'artist_profile_id' => 1,

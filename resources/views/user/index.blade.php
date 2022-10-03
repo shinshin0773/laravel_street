@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="md:flex justify-between items-center">
             <h2 class="font-semibold text-xl text-white leading-tight">
-                投稿一覧
+                投稿一覧です
             </h2>
             <div>
                 <form method="get" action="{{ route('user.items.index')}}">
