@@ -24,7 +24,7 @@
                             <p class="text-gray-900 lg:text-lg mb-8">終了予定時間：{{ $post->finish_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">いいね数 {{ $post->like }}</p>
                             <div class="flex justify-center">
-                              <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">行きたい</button>
+                              <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細</button>
                               @if (Auth::id())
                                 @if($likeCheck === false)
                                 <form action="{{ route('user.items.like',$post->id)}}" method="POST">
