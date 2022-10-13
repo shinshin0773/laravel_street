@@ -62,7 +62,7 @@
                         + markerData[i]['information'] + '<br>' +
                         '</a><a style="color: blue" href="https://www.google.co.jp/maps/?q='+ markerData[i]['lat'] + ',' + markerData[i]['lng'] + '" target="_blank" rel="noopener noreferrer">GoogleMapで確認する</a></div>'
                     });
-                markerEvent(i); // マーカーにクリックイベントを追加
+                markerEvent(i); // マーカーにクリックイベント追加
             }
 
             marker[0].setOptions({// TAM 東京のマーカーのオプション設定
