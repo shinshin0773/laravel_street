@@ -112,7 +112,7 @@
 
                 infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
                     content:
-                        '<a href=/show/' + markerData[i]['id'] + '}>'
+                        '<a href=/public/show/' + markerData[i]['id'] + '}>'
                         + markerData[i]['name'] + '<br>'
                         + markerData[i]['information'] + '<br>' +
                         '</a>'
