@@ -26,14 +26,6 @@ Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.sh
 Route::post('show/{item}/like',[ItemController::class, 'like'])->name('items.like');
 Route::post('show/{item}/unlike',[ItemController::class, 'unlike'])->name('items.unlike');
 
-
-
-// Route::get('show/{item}',[ItemController::class, 'good'])->name('items.good');
-
-// Route::get('/dashboard', function () {
-//     return view('user.dashboard');
-// })->middleware(['auth:users'])->name('dashboard');
-
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 
 

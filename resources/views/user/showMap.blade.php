@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-           開催地Map
+            詳細Map
         </h2>
     </x-slot>
 
@@ -53,6 +53,14 @@
 
     //マーカー作成
     const marker = new google.maps.Marker(markerOption);
-    }
+
+    // マーカーがクリックされたときにGoogleMapページへ遷移させる関数
+    marker.addListener('click', function() {
+        window.open('https://www.google.co.jp/maps/?q='+ postLat + ',' + postLng + '', '_blank');
+      });
+}
+
+
+
 </script>
 </x-app-layout>

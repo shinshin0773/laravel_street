@@ -1,6 +1,5 @@
 <x-guest-layout>
     <x-auth-card>
-        ユーザー用
         <x-slot name="logo">
             <div style="width: 417px;margin-left: 135px;">
                 <a>
@@ -45,8 +44,8 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('user.password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.password.request') }}">
-                        {{ __('Forgot your password?') }}
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('user.register') }}">
+                        新規登録しますか？
                     </a>
                 @endif
 
