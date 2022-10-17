@@ -14,7 +14,6 @@
             </div>
         </div>
     </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4TRSMH7b3P1XSqpMikp5mrVhHHPG_ok0&callback=initMap" async defer></script>
 <script>
     var map;
     var marker = [];

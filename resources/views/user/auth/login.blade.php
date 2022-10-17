@@ -13,7 +13,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        <p>ユーザー用</p>
         <form method="POST" action="{{ route('user.login') }}">
             @csrf
 

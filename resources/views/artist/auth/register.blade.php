@@ -10,7 +10,7 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        <p>アーティスト用</p>
         <form method="POST" action="{{ route('artist.register') }}">
             @csrf
 

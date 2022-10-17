@@ -15,7 +15,7 @@ Route::get('/', function() {
     return view('user.welcome');
 });
 
-Route::get('/',[ItemController::class,'index'])->name('items.index');
+Route::get('/top',[ItemController::class,'index'])->name('items.index');
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
                 ->middleware('guest')
