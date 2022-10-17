@@ -69,6 +69,9 @@
             <x-responsive-nav-link :href="route('user.items.index')" :active="request()->routeIs('user.items.index')">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
+            <x-nav-link :href="route('user.items.placeMap')" :active="request()->routeIs('user.items.placeMap')">
+                開催地Map
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

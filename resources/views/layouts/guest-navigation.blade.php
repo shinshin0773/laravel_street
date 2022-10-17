@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center" style="width: 15rem">
+                <div class="flex-shrink-0 flex items-center" style="width: 15rem; margin-right: 70px;">
                     <a href="{{ route('user.items.index') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
@@ -61,6 +61,9 @@
                             <x-dropdown-link :href="route('user.register')">
                                 {{ __('新規登録') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('user.login')">
+                                {{ __('ログイン') }}
+                            </x-dropdown-link>
                     </x-slot>
 
                 </x-dropdown>
@@ -84,6 +87,12 @@
             <x-responsive-nav-link :href="route('user.items.index')" :active="request()->routeIs('user.items.index')">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.items.placeMap')" :active="request()->routeIs('user.items.placeMap')">
+                開催地Map
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.register')" :active="request()->routeIs('user.register')">
+                新規登録
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -94,11 +103,11 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                 </div>
-{{--
+
                 <div class="ml-3">
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                </div> --}}
+                    <div class="font-medium text-base text-gray-800">ゲスト</div>
+                    {{-- <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
+                </div>
             </div>
 
             {{-- <div class="mt-3 space-y-1">

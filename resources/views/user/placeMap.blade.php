@@ -8,18 +8,12 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h1>開催地</h1>
-            {{-- <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="p-6 bg-white border-b border-gray-200">
-                    <img src="{{ asset('images/Map.png')}}" alt="Map">
-                </div> --}}
-
                 <div class="map-wrap">
                     <div id="map" class="map"></div>
                 </div>
             </div>
         </div>
     </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4TRSMH7b3P1XSqpMikp5mrVhHHPG_ok0&callback=initMap" async defer></script>
 <script>
     var map;
     var marker = [];
@@ -62,12 +56,12 @@
 
                 infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
                     content:
-                        '<a href=/show/' + markerData[i]['id'] + '}>'
+                        '<div><a href=/show/' + markerData[i]['id'] + '}>'
                         + markerData[i]['name'] + '<br>'
                         + markerData[i]['information'] + '<br>' +
-                        '</a>'
+                        '</a><a style="color: blue" href="https://www.google.co.jp/maps/?q='+ markerData[i]['lat'] + ',' + markerData[i]['lng'] + '" target="_blank" rel="noopener noreferrer">GoogleMapで確認する</a></div>'
                     });
-                markerEvent(i); // マーカーにクリックイベントを追加
+                markerEvent(i); // マーカーにクリックイベント追加
             }
 
             marker[0].setOptions({// TAM 東京のマーカーのオプション設定
