@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight">
-            開催地詳細
+           詳細Map
         </h2>
     </x-slot>
 
