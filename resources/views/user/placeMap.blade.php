@@ -6,11 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-        <!-- ローディング画面 -->
-        <div id="loading-wrapper">
-            <div class="loader"></div>
-            <p>Loading...</p>
-        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h1>開催地</h1>
                 <div class="map-wrap">
