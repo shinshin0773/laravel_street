@@ -9,6 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <h1>開催地</h1>
                 <div class="map-wrap">
+                    <div id="loading-wrapper">
+                        <div class="loader"></div>
+                    </div>
                     <div id="map" class="map"></div>
                 </div>
             </div>
@@ -82,6 +85,9 @@
                     infoWindow[i].open(map, marker[i]); // 吹き出しの表示
                 });
             }
+
+            const loader = document.getElementById('loading-wrapper');
+            loader.classList.add('completed');
      }
 
 
