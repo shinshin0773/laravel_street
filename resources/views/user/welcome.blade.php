@@ -24,21 +24,21 @@
         {{-- 機能一覧 --}}
         <div class="mx-auto px-4font-bold">
             <div class="text-center">
-                <h1 class="text-3xl">機能一覧</h1>
+                <h1 class="text-3xl" style="margin-bottom: 15px; margin-right: 30px;">機能一覧</h1>
                 <div class="md:flex md:justify-center md:mt-10">
-                    <div class="md:w-2/6 mr-8">
+                    <div class="md:w-2/6 mr-8" style=" margin-bottom: 20px;margin-top: 20px;">
                         <img class="text-center" style="margin: 0 auto;" src="{{ asset('images/ChechIconWhite.svg')}}" width="70" >
-                        <h3 class="mt-6 mb-2">告知機能</h3>
+                        <h3 class="mt-6 mb-2 func-text">告知機能</h3>
                         <p>ライブ情報の告知をすることができます</p>
                     </div>
-                    <div class="md:w-2/6 mr-5">
+                    <div class="md:w-2/6 mr-5"  style="margin-bottom: 30px;">
                         <img class="text-center" style="margin: 0 auto;" src="{{ asset('images/ChechIconWhite.svg')}}" width="70" >
-                        <h3 class="mt-6 mb-2">開催地Map</h3>
+                        <h3 class="mt-6 mb-2 func-text">開催地Map</h3>
                         <p>近くで開催しているライブ情報をMapで確認することができます</p>
                     </div>
-                    <div class="md:w-2/6 mr-5">
+                    <div class="md:w-2/6 mr-5"  style="margin-bottom: 30px;">
                         <img class="text-center" style="margin: 0 auto;" src="{{ asset('images/ChechIconWhite.svg')}}" width="70" >
-                        <h3 class="mt-6 mb-2">開催情報一覧</h3>
+                        <h3 class="mt-6 mb-2 func-text">開催情報一覧</h3>
                         <p>ライブの開催情報を一覧で確認することができます</p>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">告知機能</h2>
                             <p class="text-white text-base">開催地と日時を入力して投稿することでリスナーに対して告知をすることができます</p>
-                            <a href="https://xs808261.xsrv.jp/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
+                            <a href="https://street-sing.com/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>
@@ -78,7 +78,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">プロフィール機能</h2>
                             <p class="text-white text-base">プロフィールを自分なりにカスタマイズできます</p>
-                            <a href="https://xs808261.xsrv.jp/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
+                            <a href="https://street-sing.com/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>
@@ -95,7 +95,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">Twiiterへの流入</h2>
                             <p class="text-white text-base">登録する際にTwitterのアカウントIDを入力するので、そこからファンがTwitterへ流入するかもしれません。</p>
-                            <a href="https://xs808261.xsrv.jp/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
+                            <a href="https://street-sing.com/public/artist/register" class="mt-3 text-indigo-500 inline-flex items-center">アーティストはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>
@@ -120,7 +120,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">開催地Map</h2>
                             <p class="text-white text-base">現在位置近くでの開催予定のライブ情報を確認することができます</p>
-                            <a href="https://xs808261.xsrv.jp/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
+                            <a href="https://street-sing.com/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>
@@ -138,7 +138,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">場所・アーティスト・時間で検索</h2>
                             <p class="text-white text-base">自分なりに好きなタイミング・アーティスト・時間で絞り込んで検索できます</p>
-                            <a href="https://xs808261.xsrv.jp/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
+                            <a href="https://street-sing.com/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>
@@ -155,7 +155,7 @@
                           <div class="flex-grow">
                             <h2 class="text-white text-lg title-font font-medium mb-3">詳細Map</h2>
                             <p class="text-white text-base">気になったライブがあればそこまで案内できます</p>
-                            <a href="https://xs808261.xsrv.jp/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
+                            <a href="https://street-sing.com/public/register" class="mt-3 text-indigo-500 inline-flex items-center">一般ユーザーはこちらから登録・・・
                               <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                               </svg>

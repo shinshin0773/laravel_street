@@ -52,9 +52,12 @@
     background: linear-gradient(90deg, #ffffff, transparent);
 }
 
-/*ローディングスタイル*/
+.func-text {
+    font-size: 1.5rem;
+}
+
+/* ローディングのスタイル */
 #loading-wrapper {
-    /* position: fixed; */
     top: 0;
     left: 0;
     width: 100%;
@@ -67,6 +70,7 @@
     transition: all 0.3s;
     z-index: 9999;
   }
+
 
   .loader,
 .loader:before,
