@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Posts;
 
+use function Symfony\Component\String\s;
+
 class PostsController extends Controller
 {
     public function __construct()
@@ -31,6 +33,10 @@ class PostsController extends Controller
                 });
             return $text($request);
         });
+
+        //終了時刻になったら投稿を削除する
+        $now_date = now()->format('Y-m-d H:i:s');
+        Posts::where('finish_time', '<=', $now_date)->delete();
     }
     /**
      * Display a listing of the resource.
@@ -71,12 +77,13 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $now_date = now()->format('Y-m-d H:i:s');
         // バリデーション
         $request->validate([
-            'name' => 'required|string|max:50',
-            'information' => 'required|string|max:1000',
-            // 'holding_time' => 'required|date|after:yesterday',
-            // 'finish_time' => 'required|date|after:holding_time',
+            // 'name' => 'required|string|max:50',
+            // 'information' => 'required|string|max:1000',
+            // 'holding_time' => 'required|date|after:${now_date}',
+            // // 'finish_time' => 'after:"now"',
         ]);
 
 
