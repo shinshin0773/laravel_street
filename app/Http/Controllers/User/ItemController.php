@@ -32,10 +32,13 @@ class ItemController extends Controller
         //一つだけ取得
         $post = Posts::findOrFail($id);
 
+        //パラメータで取得したポストを自分がいいねしているか確認
         $like = Likes::where('post_id', $id)->where('user_id', Auth::id())->first();
 
+        //パラメータで取得したポストを自分がフォローしているか確認
         $follow = Follow::where('artist_id', $artist_id)->where('user_id', Auth::id())->first();
 
+        //いいね数をカウント
         $likeCount = Likes::where('post_id', $id)->count();
 
         //Likesテーブルに指定のポストIDとログイン中のユーザーIDがあれば

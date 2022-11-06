@@ -27,6 +27,7 @@ Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.sh
 Route::post('show/{item}/like',[ItemController::class, 'like'])->name('items.like');
 Route::post('show/{item}/unlike',[ItemController::class, 'unlike'])->name('items.unlike');
 Route::post('show/{item}/follow',[FollowController::class, 'follow'])->name('items.follow');
+Route::post('show/{item}/unfollow',[FollowController::class, 'unfollow'])->name('items.unfollow');
 Route::get('/followList',[FollowController::class, 'index'])->name('items.followList');
 
 

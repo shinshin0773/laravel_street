@@ -31,7 +31,7 @@
                                     <input type="submit" value="フォロー" class="mr-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
                                   </form>
                                 @else
-                                <form action="{{ route('user.items.unlike',$post->id)}}" method="POST">
+                                <form action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST">
                                     @csrf
                                     <input type="submit" value="フォローを取り消す" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
                                 </form>

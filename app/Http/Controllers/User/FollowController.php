@@ -38,6 +38,14 @@ class FollowController extends Controller
         return redirect()->back();
     }
 
+    public function unfollow($id)
+    {
+        $follow = Follow::where('artist_id',$id)->where('user_id', Auth::id())->first();
+        $follow->delete();
+
+        return redirect()->back();
+    }
+
     public function index()
     {
         $user = User::findOrFail(Auth::id());
