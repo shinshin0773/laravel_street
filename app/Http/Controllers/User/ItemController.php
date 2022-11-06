@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Posts;
 use App\Models\User;
 use App\Models\Likes;
-
 
 
 class ItemController extends Controller
@@ -27,24 +27,34 @@ class ItemController extends Controller
     }
 
     //ルートパラメーターで$idが入ってくる
-    public function show($id)
+    public function show($id, $artist_id)
     {
         //一つだけ取得
         $post = Posts::findOrFail($id);
 
         $like = Likes::where('post_id', $id)->where('user_id', Auth::id())->first();
 
+        $follow = Follow::where('artist_id', $artist_id)->where('user_id', Auth::id())->first();
+
         $likeCount = Likes::where('post_id', $id)->count();
 
-        //Likesテーブルに指定のポストIDにログイン中のユーザーIDがあれば
+        //Likesテーブルに指定のポストIDとログイン中のユーザーIDがあれば
         $likeCheck = false;
         if($like) {
             $likeCheck = true;
         } else {
             $likeCheck = false;
         }
-        return view('user.show', compact('post','likeCheck','likeCount'));
 
+        //Followテーブルに指定のアーティストIDとログイン中のユーザーIDがあれば
+        $followCheck = false;
+        if($follow) {
+            $followCheck = true;
+        } else {
+            $followCheck = false;
+        }
+
+        return view('user.show', compact('post','likeCheck','likeCount','followCheck'));
     }
 
     public function showMap($id)
@@ -80,7 +90,7 @@ class ItemController extends Controller
 
         Likes::create([
             'user_id' => Auth::id(),
-            'post_id' => $id,
+            'artist_profile_id' => $id,
           ]);
 
         return redirect()

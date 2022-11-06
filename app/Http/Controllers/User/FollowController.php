@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Follow;
+use App\Models\Posts;
 use App\Models\User;
 
 class FollowController extends Controller
@@ -33,11 +34,38 @@ class FollowController extends Controller
         // foreach($follows as $follow) {
         //     dd($follow);
         // }
+
+        return redirect()->back();
     }
 
     public function index()
     {
-        //
+        $user = User::findOrFail(Auth::id());
+        $artists = $user->followArtist;
+
+        // dump($artists);
+
+        // foreach($artists as $artist){
+        //     dump($artist->id);
+        // }
+        // $user = User::findOrFail(Auth::id());
+        // $followArtists = $user->followArtist;
+
+        // $followArtists = Follow::where('user_id', Auth::id())->get();
+        // dump($followArtists->)
+        // dd($followArtistsId);
+
+        // $timeLinePost = Posts::where('artist_profile_id', $followArtistsId)->get();
+
+        // $timeLinePost = [];
+
+        // foreach($followArtistsId as $followArtistId){
+        //     $artist_id = $followArtistId->artist_id;
+        //     dump(Posts::where('artist_profile_id', $artist_id)->get());
+        // }
+
+        $timeLinePost = $artists;
+        return view('user.followList',compact('timeLinePost'));
     }
 
     /**
