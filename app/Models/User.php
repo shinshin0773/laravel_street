@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Posts;
+
 
 class User extends Authenticatable
 {
@@ -45,10 +47,15 @@ class User extends Authenticatable
     public function posts()
     {
         //->withPivotで中間テーブルのid,quantityも取得できる
-        return $this->belongsToMany(Posts::class, 'likes')
-        ->withPivot(['id']);
         // 第2引数で中間テーブル名
         // 中間テーブルのカラム取得
         // デフォルトでは関連付けるカラム(user_idと product_id)のみ取得
+        return $this->belongsToMany(Posts::class, 'likes')
+        ->withPivot(['id']);
+    }
+
+    public function followArtist()
+    {
+        return $this->belongsToMany(Posts::class, 'follows')->withPivot(['created_at']);
     }
 }

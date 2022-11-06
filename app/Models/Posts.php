@@ -101,4 +101,9 @@ class Posts extends Model
         return $this->belongsToMany(User::class, 'likes')
         ->withPivot(['id']);
     }
+
+    public function followUsers()
+    {
+        return $this->belongsToMany(User::class, 'follows')->withPivot(['created_at']);
+    }
 }

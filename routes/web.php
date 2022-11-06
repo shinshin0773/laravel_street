@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LifeCycleTestController;
+use App\Http\Controllers\User\FollowController;
 use App\Http\Controllers\User\ItemController;
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,8 @@ Route::get('show/{item}',[ItemController::class, 'show'])->name('items.show');
 Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.showMap');
 Route::post('show/{item}/like',[ItemController::class, 'like'])->name('items.like');
 Route::post('show/{item}/unlike',[ItemController::class, 'unlike'])->name('items.unlike');
+Route::post('show/{item}/follow',[FollowController::class, 'follow'])->name('items.follow');
+
 
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 

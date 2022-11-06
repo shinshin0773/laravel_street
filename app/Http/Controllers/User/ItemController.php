@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Likes;
 use Illuminate\Http\Request;
-use App\Models\Posts;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Posts;
+use App\Models\User;
+use App\Models\Likes;
+
+
 
 class ItemController extends Controller
 {
@@ -66,6 +69,7 @@ class ItemController extends Controller
         return view('user.placeMap',compact('posts'));
     }
 
+    //いいねした時
     public function like($id)
     {
         $post = Posts::findOrFail($id);
@@ -83,6 +87,7 @@ class ItemController extends Controller
         ->back();
     }
 
+    //いいねを解除した時
     public function unlike($id)
     {
         $post = Posts::findOrFail($id);
@@ -95,5 +100,6 @@ class ItemController extends Controller
         $like->delete();
 
         return redirect()->back();
-        }
+    }
+
 }

@@ -24,6 +24,10 @@
                             <p class="text-gray-900 lg:text-lg mb-8">終了予定時間：{{ $post->finish_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">いいね数 {{ $post->like }}</p>
                             <div class="flex justify-center">
+                              <form action="{{ route('user.items.follow',$post->artist_profile_id)}}" method="POST">
+                                @csrf
+                                <input type="submit" value="フォロー" class="mr-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                              </form>
                               <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細Map</button>
                               @if (Auth::id())
                                 @if($likeCheck === false)
@@ -38,8 +42,7 @@
                                 </form>
                                 @endif
                               @endif
-                              {{-- <button onclick="location.href='{{ route('user.items.good', $post->id )}}'"" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">いいね</button> --}}
-                              <button class="ml-4 inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">ツイート</button>
+                              <button class="ml-4 inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">ツイート</a></button>
                             </div>
                           </div>
                         </div>
