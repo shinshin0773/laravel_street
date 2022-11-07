@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="md:flex justify-between items-center">
             <h2 class="font-semibold text-xl text-white leading-tight mb-3">
-                フォローアーティスト一覧
+                タイムライン
             </h2>
             {{-- <div>
                 <form method="get" action="{{ route('user.items.index')}}">
@@ -56,22 +56,39 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <div class="md:flex md:flex-wrap">
-                        @foreach($timeLinePost as $followArtists)
-                       <div class="md:w-1/4 md:p-4 mt-3">
-                           {{-- <a href="{{ route('user.items.show',['item' => $post->id ])}}">
-                           <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4"> --}}
-                               {{-- <img src="{{asset($post->file_path)}}" alt="サムネイル" class="post-image"> --}}
-                               <div class="mt-3">
-                                   <div class="text-gray-700">名前：{{ $followArtists->name }}</div>
-                               </div>
-                          </div>
-                       </a>
-                       </div>
-                   @endforeach
-               </div>
-               {{-- {{ $posts->links() }} --}}
+                <div class="md:flex md:flex-wrap">
+                    @foreach($timeLinePost as $post)
+                        <div class="md:w-1/4 md:p-4 mt-3">
+                            <a href="{{ route('user.items.show',['item' => $post[0]['id'],'artist_id' => $post[0]['artist_profile_id']])}}">
+                                <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
+                                    <img src="{{ $post[0]['file_path']}}" alt="サムネイル" class="post-image">
+                                    <div class="mt-3">
+                                        <div class="text-gray-700">名前：{{ $post[0]['artist_profile_id'] }}</div>
+                                        <div class="text-gray-700">名前：{{ $post[0]['name'] }}</div>
+                                        <div class="text-gray-700 post-content">内容：{{ $post[0]['information']}}</div>
+                                        <div class="text-gray-700">場所：{{ $post[0]['place'] }}</div>
+                                        <div class="text-gray-700">開催時刻：<br>{{ $post[0]['holding_time']}}</div>
+                                        <div class="text-gray-700">終了時刻：<br>{{ $post[0]['finish_time'] }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {{-- <div class="md:w-1/4 md:p-4 mt-3">
+                        <a href="{{ route('user.items.show',['item' => $post[1]['id'],'artist_id' => $post[0]['artist_profile_id']])}}">
+                            <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
+                                <img src="{{ $post[1]['file_path']}}" alt="サムネイル" class="post-image">
+                                <div class="mt-3">
+                                    <div class="text-gray-700">名前：{{ $post[1]['artist_profile_id'] }}</div>
+                                    <div class="text-gray-700">名前：{{ $post[1]['name'] }}</div>
+                                    <div class="text-gray-700 post-content">内容：{{ $post[1]['information']}}</div>
+                                    <div class="text-gray-700">場所：{{ $post[1]['place'] }}</div>
+                                    <div class="text-gray-700">開催時刻：<br>{{ $post[1]['holding_time']}}</div>
+                                    <div class="text-gray-700">終了時刻：<br>{{ $post[1]['finish_time'] }}</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div> --}}
+                    @endforeach
                 </div>
             </div>
         </div>

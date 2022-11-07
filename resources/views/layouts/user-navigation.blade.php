@@ -19,6 +19,9 @@
                     <x-nav-link :href="route('user.items.placeMap')" :active="request()->routeIs('user.items.placeMap')">
                         開催地Map
                     </x-nav-link>
+                    <x-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
+                        フォロー中一覧
+                    </x-nav-link>
                 </div>
             </div>
 
