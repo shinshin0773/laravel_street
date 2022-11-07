@@ -16,6 +16,7 @@ class FollowController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //フォロー処理
     public function follow($id)
     {
         Follow::create([
@@ -23,26 +24,16 @@ class FollowController extends Controller
             'artist_id' => $id,
         ]);
 
-        // $artist_name = User::find(1)->followArtist()->orderBy('name')->get();
-
-        // dd($artist_name);
-
-        // $user = User::find(1);
-
-        // $follows = $user->followArtist->all();
-
-        // foreach($follows as $follow) {
-        //     dd($follow);
-        //     dd(Posts::where('artist_id',$follow)->get());
-        // }
-
         return redirect()->back();
     }
 
     //フォローを外す処理
     public function unfollow($id)
     {
+        //GetのアーティストIDと自分のユーザーIDが一致しているものを取得
         $follow = Follow::where('artist_id',$id)->where('user_id', Auth::id())->first();
+
+        //削除
         $follow->delete();
 
         return redirect()->back();
@@ -50,56 +41,19 @@ class FollowController extends Controller
 
     public function index()
     {
-        $user = User::findOrFail(Auth::id());
-        $artists = $user->followArtist;
-
-        // dump($artists);
-
-        // foreach($artists as $artist){
-        //     dump($artist->id);
-        // }
         // $user = User::findOrFail(Auth::id());
-        // $followArtists = $user->followArtist;
+        // $artists = $user->followArtist;
 
+        //自分がフォローしているアーティストのIDを取得
         $followArtistsId = Follow::where('user_id', Auth::id())->get();
-        // dump($followArtists->)
-        // dd($followArtistsId);
 
-        // $timeLinePost = Posts::where('artist_profile_id', $followArtistsId)->get();
-
-        // $timeLinePost = [];
-
-        $timeLinePost = $followArtistsId->map(function ($item, $key) {
+        //フォロー中のアーティストIDと一致した投稿を取得
+        $followArtistPosts = $followArtistsId->map(function ($item, $key) {
             $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
             return $posts;
         });
 
-        // dd($timeLinePost);
-
-        // list($followPosts , $keys ) = $timeLinePost;
-        // dd($followArtists
-
-        // $arrayKey = array_keys($keys);
-        // foreach($posts as $post){
-        //     // dd($posts[$keys][0]['name']);
-        //     foreach($keys as $key){
-        //         dd($key[0]);
-        //     }
-        // }
-
-        // // dump($timeLinePost->values());
-        // $followPosts = $timeLinePost->map(function ($item, $key) {
-        //     $posts = $item[$key];
-        //     return $posts;
-        // });
-        // dd($timeLinePost->toArray()[0][0]);
-        // foreach($timeLinePost as $post){
-        //     // dump($post[0]['artist_profile_id']);
-        //     // dump($post[0]['information']);
-        //     // $post_id = $post[0]['post_id'];
-        //     // $artist_profile_id = $post[0]['artist_profile_id'];
-        // }
-        return view('user.followList',compact('timeLinePost'));
+        return view('user.followList',compact('followArtistPosts'));
     }
 
     /**
