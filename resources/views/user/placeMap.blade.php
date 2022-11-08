@@ -45,8 +45,8 @@
             // 地図の作成
             var mapLatLng = new google.maps.LatLng({lat: nowlat, lng: nowlng}); // 緯度経度のデータ作成
             map = new google.maps.Map(document.getElementById('map'), { // #sampleに地図を埋め込む
-            center: mapLatLng, // 地図の中心を指定
-            zoom: 15 // 地図のズームを指定
+                center: mapLatLng, // 地図の中心を指定
+                zoom: 15 // 地図のズームを指定
             });
 
             // マーカー毎の処理

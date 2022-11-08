@@ -93,7 +93,7 @@ class ItemController extends Controller
 
         Likes::create([
             'user_id' => Auth::id(),
-            'artist_profile_id' => $id,
+            'post_id' => $id,
           ]);
 
         return redirect()

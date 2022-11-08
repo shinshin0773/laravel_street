@@ -57,27 +57,41 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="md:flex md:flex-wrap">
-                    @foreach($followArtistPosts as $post)
-                        @for($i = 0;$i < count($timeLinePost); $i++)
-                            <div class="md:w-1/4 md:p-4 mt-3">
-                                <a href="{{ route('user.items.show',['item' => $post[$i]['id'],'artist_id' => $post[$i]['artist_profile_id']])}}">
-                                    <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
-                                        <img src="{{ $post[$i]['file_path']}}" alt="サムネイル" class="post-image">
-                                        <div class="mt-3">
-                                            <div class="text-gray-700">名前：{{ $post[$i]['artist_profile_id'] }}</div>
-                                            <div class="text-gray-700">名前：{{ $post[$i]['name'] }}</div>
-                                            <div class="text-gray-700 post-content">内容：{{ $post[$i]['information']}}</div>
-                                            <div class="text-gray-700">場所：{{ $post[$i]['place'] }}</div>
-                                            <div class="text-gray-700">開催時刻：<br>{{ $post[$i]['holding_time']}}</div>
-                                            <div class="text-gray-700">終了時刻：<br>{{ $post[$i]['finish_time'] }}</div>
-                                        </div>
+                        @for($i = 0;$i < count($followArtistPosts); $i++)
+                             @foreach($followArtistPosts[$i] as $post)
+                                {{-- @for($ii = 0;$ii < count($post); $ii++) --}}
+                                    <div class="md:w-1/4 md:p-4 mt-3">
+                                        <a href="{{ route('user.items.show',['item' => $post['id'],'artist_id' => $post['artist_profile_id']])}}">
+                                            <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
+                                                <img src="{{ $post['file_path']}}" alt="サムネイル" class="post-image">
+                                                <div class="mt-3">
+                                                    <div class="text-gray-700">名前：{{ $post['artist_profile_id'] }}</div>
+                                                    <div class="text-gray-700">名前：{{ $post['name'] }}</div>
+                                                    <div class="text-gray-700 post-content">内容：{{ $post['information']}}</div>
+                                                    <div class="text-gray-700">場所：{{ $post['place'] }}</div>
+                                                    <div class="text-gray-700">開催時刻：<br>{{ $post['holding_time']}}</div>
+                                                    <div class="text-gray-700">終了刻：<br>{{ $post['finish_time'] }}</div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
+                                                <img src="{{ $post[1]['file_path']}}" alt="サムネイル" class="post-image">
+                                                <div class="mt-3">
+                                                    <div class="text-gray-700">名前：{{ $post[1]['artist_profile_id'] }}</div>
+                                                    <div class="text-gray-700">名前：{{ $post[1]['name'] }}</div>
+                                                    <div class="text-gray-700 post-content">内容：{{ $post[1]['information']}}</div>
+                                                    <div class="text-gray-700">場所：{{ $post[1]['place'] }}</div>
+                                                    <div class="text-gray-700">開催時刻：<br>{{ $post[1]['holding_time']}}</div>
+                                                    <div class="text-gray-700">終了時刻：<br>{{ $post[]['finish_time'] }}</div>
+                                                </div>
+                                            </div> --}}
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
+                             {{-- @endfor --}}
+                            @endforeach
                         @endfor
-                    @endforeach
                 </div>
             </div>
+            {{-- {{ $followArtistPosts->links() }} --}}
         </div>
     </div>
 </x-app-layout>

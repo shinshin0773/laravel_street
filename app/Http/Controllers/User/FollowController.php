@@ -32,8 +32,6 @@ class FollowController extends Controller
     {
         //GetのアーティストIDと自分のユーザーIDが一致しているものを取得
         $follow = Follow::where('artist_id',$id)->where('user_id', Auth::id())->first();
-
-        //削除
         $follow->delete();
 
         return redirect()->back();
@@ -49,9 +47,16 @@ class FollowController extends Controller
 
         //フォロー中のアーティストIDと一致した投稿を取得
         $followArtistPosts = $followArtistsId->map(function ($item, $key) {
-            $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
+            $posts =  Posts::where('artist_profile_id', $item->artist_id)->orderBy('holding_time', 'asc')->get();
             return $posts;
         });
+
+
+        // for($i=0; $i < count($followArtistPosts); $i++){
+        //         for($j = 0; $j < count($followArtistPosts[$i]); $j++){
+        //             $followArtistPosts =  $followArtistPosts[$i][$j];
+        //         }
+        // }
 
         return view('user.followList',compact('followArtistPosts'));
     }
