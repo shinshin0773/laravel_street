@@ -20,7 +20,7 @@
                         開催地Map
                     </x-nav-link>
                     <x-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
-                        フォロー中一覧
+                        タイムライン
                     </x-nav-link>
                 </div>
             </div>
@@ -40,15 +40,16 @@
                     </x-slot>
 
                     <x-slot name="content">
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('user.logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('user.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log out') }}
                             </x-dropdown-link>
+
                         </form>
                     </x-slot>
                 </x-dropdown>
@@ -96,7 +97,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('user.logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('user.logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">

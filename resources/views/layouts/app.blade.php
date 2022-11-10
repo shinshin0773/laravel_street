@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+    <head prefix="og:http://ogp.me/ns#">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -14,6 +14,14 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/style.css')}}">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+        <!-- ページのプロパティ情報 -->
+        <meta property="og:url" content="https://street-sing.com/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Street">
+        <meta property="og:description" content="「路上ライブは見つける時代から探す時代に・・・」をテーマにして開発しております。ユーザーはアーティストの開催情報、アーティストはユーザーに開催情報を共有することができます">
+        <meta property="og:site_name" content="ホームページのコーディング ポートフォリオ">
+        <meta property="og:image" content="public/images/toppage.png">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

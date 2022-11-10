@@ -29,6 +29,7 @@ Route::post('show/{item}/unlike',[ItemController::class, 'unlike'])->name('items
 Route::post('show/{item}/follow',[FollowController::class, 'follow'])->name('items.follow');
 Route::post('show/{item}/unfollow',[FollowController::class, 'unfollow'])->name('items.unfollow');
 Route::get('/followList',[FollowController::class, 'index'])->name('items.followList');
+Route::get('/followArtist',[FollowController::class, 'show'])->name('items.followArtist');
 
 
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);

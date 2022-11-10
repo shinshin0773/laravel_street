@@ -23,35 +23,35 @@
                             <p class="text-gray-900 lg:text-lg">開催日時:{{ $post->holding_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">終了予定時間：{{ $post->finish_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">いいね数 {{ $post->like }}</p>
-                            <div class="flex justify-center">
+                            <div>
                               @if (Auth::id())
                                 @if($followCheck === false)
-                                <form action="{{ route('user.items.follow',$post->artist_profile_id)}}" method="POST">
+                                <form action="{{ route('user.items.follow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="フォロー" class="mr-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
-                                  </form>
+                                    <input type="submit" value="フォロー" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                </form>
                                 @else
-                                <form action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST">
+                                <form action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="フォローを取り消す" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                    <input type="submit" value="フォローを取り消す" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
                                 </form>
                                 @endif
                               @endif
-                              <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細Map</button>
+                              <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg" style="margin-bottom: 10px;">詳細Map</button>
                               @if (Auth::id())
                                 @if($likeCheck === false)
-                                <form action="{{ route('user.items.like',$post->id)}}" method="POST">
+                                <form action="{{ route('user.items.like',$post->id)}}" method="POST" style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="いいね" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                    <input type="submit" value="いいね" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
                                 </form>
                                 @else
-                                <form action="{{ route('user.items.unlike',$post->id)}}" method="POST">
+                                <form action="{{ route('user.items.unlike',$post->id)}}" method="POST" style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="いいねを取り消す" class="ml-4 inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
+                                    <input type="submit" value="いいねを取り消す" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded text-lg">
                                 </form>
                                 @endif
                               @endif
-                              <button class="ml-4 inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">ツイート</a></button>
+                              <button style="margin-bottom: 10px;" class="inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">ツイート</a></button>
                             </div>
                           </div>
                         </div>

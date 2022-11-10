@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Follow;
 use App\Models\Posts;
 use App\Models\User;
+use Illuminate\Database\Console\DumpCommand;
 
 class FollowController extends Controller
 {
@@ -45,20 +46,28 @@ class FollowController extends Controller
         //自分がフォローしているアーティストのIDを取得
         $followArtistsId = Follow::where('user_id', Auth::id())->get();
 
-        //フォロー中のアーティストIDと一致した投稿を取得
-        $followArtistPosts = $followArtistsId->map(function ($item, $key) {
-            $posts =  Posts::where('artist_profile_id', $item->artist_id)->orderBy('holding_time', 'asc')->get();
-            return $posts;
-        });
+       if($followArtistsId->count()){
+            //フォロー中のアーティストIDと一致した投稿を取得
+            $followArtistPosts = $followArtistsId->map(function ($item, $key) {
+                $posts =  Posts::where('artist_profile_id', $item->artist_id)->orderBy('holding_time', 'asc')->get();
+                return $posts;
+            });
+            for($i=0; $i < count($followArtistPosts); $i++){
+                    for($j = 0; $j < count($followArtistPosts[$i]); $j++){
+                        $followArtistPostsList[] = $followArtistPosts[$i][$j];
+                    }
+            }
+            array_multisort( array_map( "strtotime", array_column( $followArtistPostsList, "holding_time" ) ), SORT_ASC, $followArtistPostsList ) ;
+        }else {
+            $followArtistPostsList = null;
+        }
 
-
-        // for($i=0; $i < count($followArtistPosts); $i++){
-        //         for($j = 0; $j < count($followArtistPosts[$i]); $j++){
-        //             $followArtistPosts =  $followArtistPosts[$i][$j];
-        //         }
+    // foreach($followArtistPostsList as $post){
+        //     dump($post['name']);
         // }
 
-        return view('user.followList',compact('followArtistPosts'));
+
+        return view('user.followList',compact('followArtistPostsList'));
     }
 
     /**
