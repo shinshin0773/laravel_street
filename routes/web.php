@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-// Route::get('/',[ItemController::class,'index'])->name('items.index');
+Route::get('/',[ItemController::class,'index'])->name('items.index');
 Route::get('/placeMap',[ItemController::class,'placeMap'])->name('items.placeMap');
 Route::get('show/{item}/{artist_id}',[ItemController::class, 'show'])->name('items.show');
 Route::get('show/{item}/map',[ItemController::class, 'showMap'])->name('items.showMap');
@@ -31,6 +31,10 @@ Route::post('show/{item}/unfollow',[FollowController::class, 'unfollow'])->name(
 Route::get('/followList',[FollowController::class, 'index'])->name('items.followList');
 Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
 // Route::get('/followArtist',[FollowController::class, 'show'])->name('items.followArtist');
+
+// Route::get('/show/{item}/map', function() {
+//     return view("user.showMap");
+//   })->name('items.showMap');
 
 Route::get('/servicecontainertest', [LifeCycleTestController::class, 'showServiceContainerTest']);
 
