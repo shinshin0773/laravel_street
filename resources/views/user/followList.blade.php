@@ -107,15 +107,7 @@
                                     @csrf
                                     <input type="submit" value="unfllow" class="py-1 px-3 mr-5 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">
                                 </form>
-                                {{-- <a href="javascript:void(0)" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                                        <rect x="4" y="4" width="6" height="6" rx="1"></rect>
-                                        <rect x="14" y="4" width="6" height="6" rx="1"></rect>
-                                        <rect x="4" y="14" width="6" height="6" rx="1"></rect>
-                                        <rect x="14" y="14" width="6" height="6" rx="1"></rect>
-                                    </svg>
-                                </a> --}}
+                                </a>
                                 <div class="flex">
                                     <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px; margin-right: 10px;"></a>
                                     <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;">{{ $profile['name']}}</h1></a>

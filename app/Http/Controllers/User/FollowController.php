@@ -53,6 +53,7 @@ class FollowController extends Controller
 
 
        if($followArtistsId->count()){
+           //フォロー中のアーティストのプロフィール情報を取得
             $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
                 $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->get();
                 return $profiles;
@@ -60,7 +61,16 @@ class FollowController extends Controller
 
             for($i=0; $i < count($followArtistProfileList); $i++){
                     $followArtistProfiles[] = $followArtistProfileList[$i][0];
+                    // $collProfile = collect($followArtistProfiles[$i]);
+                    // $followArtistProfiles = $this->paginate($collProfile, 2,null, ['path'=>'/followList']);
              }
+
+            //  //配列をコレクション型に変更してページネーションをできるようにする
+            // $followArtistProfiles = $this->paginate($collProfile, 1,null, ['path'=>'/followList']);
+
+            // foreach($followArtistProfiles as $profile){
+            //     dd($profile[0]['name']);
+            // }
 
             //フォロー中のアーティストIDと一致した投稿を取得
             $followArtistPosts = $followArtistsId->map(function ($item, $key) {
@@ -81,6 +91,8 @@ class FollowController extends Controller
             $posts = null;
             $followArtistProfiles = null;
         }
+
+
         return view('user.followList',compact('posts','followArtistProfiles'));
     }
 

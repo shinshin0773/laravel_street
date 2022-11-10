@@ -63,6 +63,7 @@ class ItemController extends Controller
 
     public function showMap($id)
     {
+        dd($id);
         //一つだけ取得
         $post = Posts::findOrFail($id);
 
