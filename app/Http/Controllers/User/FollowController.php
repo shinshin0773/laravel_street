@@ -5,8 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Follow;
 use App\Models\Posts;
+use App\Models\ArtistProfile;
 use App\Models\User;
 use Illuminate\Database\Console\DumpCommand;
 
@@ -46,10 +50,21 @@ class FollowController extends Controller
         //自分がフォローしているアーティストのIDを取得
         $followArtistsId = Follow::where('user_id', Auth::id())->get();
 
+
+
        if($followArtistsId->count()){
+            $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
+                $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->get();
+                return $profiles;
+            });
+
+            for($i=0; $i < count($followArtistProfileList); $i++){
+                    $followArtistProfiles[] = $followArtistProfileList[$i][0];
+             }
+
             //フォロー中のアーティストIDと一致した投稿を取得
             $followArtistPosts = $followArtistsId->map(function ($item, $key) {
-                $posts =  Posts::where('artist_profile_id', $item->artist_id)->orderBy('holding_time', 'asc')->get();
+                $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
                 return $posts;
             });
             for($i=0; $i < count($followArtistPosts); $i++){
@@ -58,16 +73,22 @@ class FollowController extends Controller
                     }
             }
             array_multisort( array_map( "strtotime", array_column( $followArtistPostsList, "holding_time" ) ), SORT_ASC, $followArtistPostsList ) ;
+
+            //配列をコレクション型に変更してページネーションをできるようにする
+            $coll = collect($followArtistPostsList);
+            $posts = $this->paginate($coll, 8,null, ['path'=>'/followList']);
         }else {
-            $followArtistPostsList = null;
+            $posts = null;
+            $followArtistProfiles = null;
         }
+        return view('user.followList',compact('posts','followArtistProfiles'));
+    }
 
-    // foreach($followArtistPostsList as $post){
-        //     dump($post['name']);
-        // }
-
-
-        return view('user.followList',compact('followArtistPostsList'));
+    private function paginate($items, $perPage , $page = null, $options = [])
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
     /**
@@ -99,7 +120,9 @@ class FollowController extends Controller
      */
     public function show($id)
     {
-        //
+        $artist_profile = ArtistProfile::where('artist_id', $id)->get();
+        // dd($artist_profile['name']);
+        return view('user.artistProfile',compact('artist_profile'));
     }
 
     /**

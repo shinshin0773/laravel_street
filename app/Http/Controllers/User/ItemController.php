@@ -16,14 +16,15 @@ class ItemController extends Controller
     //formで渡ってきた検索順をRequestで受け取る
     public function index(Request $request)
     {
-        // dd($request->keyword);
+        //指定されたパラメーターを取得
+        $params = $request->all();
         //全件取得
         $posts = Posts::sortOrder($request->sort)
         ->searchKeyword($request->keyword)
         ->searchDate($request->holdingDate)
         ->paginate(8);
 
-        return view('user.index', compact('posts'));
+        return view('user.index', compact('posts','params'));
     }
 
     //ルートパラメーターで$idが入ってくる

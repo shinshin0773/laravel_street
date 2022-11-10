@@ -75,7 +75,8 @@
                         </div>
                         @endforeach
                     </div>
-                {{ $posts->links() }}
+                     {{-- ページネーション --}}
+                     {{ $posts->appends(['sort' => $params['sort'] ?? 1, 'holdingDate' => $params['holdingDate'] ?? '','keyword' => $params['keyword'] ?? '']) }}
                 </div>
             </div>
         </div>

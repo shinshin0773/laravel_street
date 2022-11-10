@@ -41,19 +41,19 @@ class Posts extends Model
     //スコープ
     public function scopeSortOrder($query, $sortOrder)
     {
+        //新しい順
+        if($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['later']){
+           return $query->orderBy('posts.created_at', 'desc') ;
+        }
+        //古い順
+        if($sortOrder === \Constant::SORT_ORDER['older']){
+           return $query->orderBy('posts.created_at', 'asc') ;
+        }
         //おすすめ順
-        if($sortOrder === null || $sortOrder === \Constant::SORT_ORDER['recommend']){
+        if($sortOrder === \Constant::SORT_ORDER['recommend']){
             return $query->inRandomOrder();
         }
 
-         //新しい順
-         if($sortOrder === \Constant::SORT_ORDER['later']){
-            return $query->orderBy('posts.created_at', 'desc') ;
-         }
-         //古い順
-         if($sortOrder === \Constant::SORT_ORDER['older']){
-            return $query->orderBy('posts.created_at', 'asc') ;
-         }
          //開催日時が近い順
          if($sortOrder === \Constant::SORT_ORDER['near']){
             return $query->orderBy('posts.holding_time', 'asc') ;
