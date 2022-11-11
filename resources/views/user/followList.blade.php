@@ -96,6 +96,7 @@
             <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
             <div style="min-height: 716px" class="w-64 absolute sm:relative bg-gray-800 shadow md:h-full flex-col justify-between hidden sm:flex">
                 <div class="px-8">
+                    <p class="text-white font-bold mt-6">フォロー中のアーティスト</p>
                     <ul class="mt-12">
                         @if($followArtistProfiles === null)
                             <div class="mx-auto">
