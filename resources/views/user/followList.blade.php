@@ -4,52 +4,6 @@
             <h2 class="font-semibold text-xl text-white leading-tight mb-3">
                 タイムライン
             </h2>
-            {{-- <div>
-                <form method="get" action="{{ route('user.items.index')}}">
-                    <div class="md:flex">
-                        <div class="md:flex">
-                            <div>
-                                <span class="text-sm text-white">表示順</span><br>
-                                <select name="sort" class="mr-4" id="sort">
-                                    <option value="{{ \Constant::SORT_ORDER['later']}}"
-                                        @if(\Request::get('sort') == \Constant::SORT_ORDER['later'] )
-                                        selected
-                                        @endif>
-                                        新しい順
-                                    </option>
-                                    <option value="{{ \Constant::SORT_ORDER['older']}}"
-                                        @if(\Request::get('sort') == \Constant::SORT_ORDER['older'] )
-                                        selected
-                                        @endif>
-                                        古い順
-                                    </option>
-                                    <option value="{{ \Constant::SORT_ORDER['recommend']}}"
-                                        @if(\Request::get('sort') == \Constant::SORT_ORDER['recommend'] )
-                                        selected
-                                        @endif>
-                                        おすすめ順
-                                    </option>
-                                    <option value="{{ \Constant::SORT_ORDER['near']}}"
-                                        @if(\Request::get('sort') == \Constant::SORT_ORDER['near'] )
-                                        selected
-                                        @endif>
-                                        開催近い順
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="mr-4">
-                                <span class="text-sm text-white">開催日</span><br>
-                                <input type="date" name="holdingDate" value="" id="dateSelect">
-                            </div>
-                        </div>
-                        <div class="flex space-x-2 items-center" style="margin-top: 17px;">
-                            <div><input name="keyword" class="border border-gray-500 py-2" placeholder="キーワードを入力" type="text"></div>
-                            <div style="margin-bottom: 8px;"><button class="mt-2 ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">検索する</button></div>
-                        </div>
-
-                    </div>
-                </form>
-            </div> --}}
         </div>
     </x-slot>
 
@@ -104,15 +58,15 @@
                         @else
                             @foreach($followArtistProfiles as $profile)
                             <li class="flex w-full text-gray-300 cursor-pointer items-center mb-6">
-                                <form style="margin-top:1.5px;margin-right: 25px;" action="{{ route('user.items.unfollow',$profile['artist_id'] )}}" method="POST"  style="margin-bottom: 10px;">
+                                <div class="flex">
+                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
+                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
+                                </div>
+                                <form style="margin-top:1.5px;" action="{{ route('user.items.unfollow',$profile['artist_id'] )}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
                                     <input type="submit" value="unfllow" class="py-1 px-3 mr-5 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">
                                 </form>
                                 </a>
-                                <div class="flex">
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px; margin-right: 10px;"></a>
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;">{{ $profile['name']}}</h1></a>
-                                </div>
                             </li>
                             @endforeach
                         @endif
