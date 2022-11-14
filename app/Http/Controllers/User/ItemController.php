@@ -13,6 +13,13 @@ use App\Models\Likes;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+      //終了時刻になったら投稿を削除する
+      $now_date = now()->format('Y-m-d H:i:s');
+      Posts::where('finish_time', '<=', $now_date)->delete();
+    }
+
     //formで渡ってきた検索順をRequestで受け取る
     public function index(Request $request)
     {

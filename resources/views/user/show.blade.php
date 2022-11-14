@@ -36,6 +36,8 @@
                                     <input type="submit" value="unFollow" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
                                 </form>
                                 @endif
+                              @else
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;">Follow</button>
                               @endif
 
                               @if (Auth::id())
@@ -50,12 +52,13 @@
                                     <input type="submit" value="unLike" class="inline-flex text-red-600 bg-white border-2 border-red-600 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
                                 </form>
                                 @endif
+                                @else
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;">Like</button>
                               @endif
 
-                              {{-- <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class="text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;">詳細Map</button>
-                              <a href="{{ route('user.items.showMap', $post->id, $post->artist_profile_id) }}">詳細Map</a> --}}
+                              <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class="text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;">詳細Map</button>
 
-                              <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細Map</button>
+                              {{-- <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細Map</button> --}}
 
                               {{-- <button style="margin-bottom: 10px;" class="inline-flex text-gray-700 bg-red-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg"><a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">ツイート</a></button> --}}
                               <a data-url="https://xs808261.xsrv.jp/public/" href="https://twitter.com/share" class="block twitter-share-button" data-lang="ja" data-count="vertical" data-dnt="true" target="_blank">
@@ -110,3 +113,9 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+function alertLogin(){
+    alert('ログインしていないのでログインします');
+    location.href = 'https://street-sing.com/login';
+}
+</script>
