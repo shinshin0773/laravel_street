@@ -27,7 +27,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen content">
+        <div class="min-h-screen" id="content">
             <div class="bg-color">
             @if(request()->is('admin*'))
                 @include('layouts.admin-navigation')
@@ -55,5 +55,24 @@
         </div>
         {{-- GoogleMapAPICDNを読み込む --}}
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4TRSMH7b3P1XSqpMikp5mrVhHHPG_ok0&callback=initMap" async defer></script>
+        <script>
+            // let wh = window.innerHeight;
+            // let elem = document.getElementById('content');
+
+            // window.addEventListener("load", () => {
+            //     let elem = document.getElementById("content");
+            //     // let elem = document.getElementById("bg-color");
+            //     let wh = window.innerHeight;
+            //     elem.style.height = wh + "px";
+
+            //     console.log(elem.style.height);
+            // }, false);
+
+            // window.addEventListener("resize", () => {
+            //     let elem = document.getElementById("content");
+            //     let wh = window.innerHeight;
+            //     elem.style.height = wh + "px";
+            // }, false);
+        </script>
     </body>
 </html>

@@ -39,7 +39,7 @@
                             </div>
                             <div class="mr-4">
                                 <span class="text-sm text-white">開催日</span><br>
-                                <input type="date" name="holdingDate" value="" id="dateSelect">
+                                <input type="date" value="{{ $holdingDate }}" name="holdingDate" id="dateSelect" style="width: 100%;">
                             </div>
                         </div>
                         <div class="flex space-x-2 items-center" style="margin-top: 17px;">

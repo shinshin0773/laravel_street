@@ -31,7 +31,9 @@ class ItemController extends Controller
         ->searchDate($request->holdingDate)
         ->paginate(8);
 
-        return view('user.index', compact('posts','params'));
+        $holdingDate = $request->holdingDate;
+
+        return view('user.index', compact('posts','params','holdingDate'));
     }
 
     //ルートパラメーターで$idが入ってくる

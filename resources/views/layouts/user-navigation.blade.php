@@ -73,9 +73,12 @@
             <x-responsive-nav-link :href="route('user.items.index')" :active="request()->routeIs('user.items.index')">
                 {{ __('ホーム') }}
             </x-responsive-nav-link>
-            <x-nav-link :href="route('user.items.placeMap')" :active="request()->routeIs('user.items.placeMap')">
-                開催地Map
-            </x-nav-link>
+            <x-responsive-nav-link :href="route('user.items.placeMap')" :active="request()->routeIs('user.items.placeMap')">
+                {{ __('開催地Map') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
+                {{ __('タイムライン') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

@@ -12,7 +12,7 @@
     <div class="py-12 w-full">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="md:flex md:flex-wrap">
+                <div class="lg:flex lg:flex-wrap">
                     @if($posts === null)
                       <div class="mx-auto">
                         <h1 class="text-xl font-bold">現在フォロー中のアーティストがいません</h1>
@@ -20,7 +20,7 @@
                     @else
                         @foreach($posts as $post)
                         {{-- @for($ii = 0;$ii < count($post); $ii++) --}}
-                            <div class="md:w-1/4 md:p-4 mt-3">
+                            <div class="lg:w-1/4 lg:p-4 mt-3">
                                 <a href="{{ route('user.items.show',['item' => $post['id'],'artist_id' => $post['artist_profile_id']])}}">
                                     <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
                                         <img src="{{ $post['file_path']}}" alt="サムネイル" class="post-image">
@@ -39,13 +39,11 @@
                           {{ $posts->links() }}
                        @endif
                         </div>
-
             </div>
         </div>
     </div>
-
     {{-- フォローリストを表示するサイドバー --}}
-        <div class="flex" style="height: 1248px">
+        <div class="hidden lg:flex" style="height: 1248px">
             <!-- Sidebar starts -->
             <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
             <div style="min-height: 716px" class="w-64 absolute sm:relative bg-gray-800 shadow md:h-full flex-col justify-between hidden sm:flex">
@@ -71,39 +69,7 @@
                             @endforeach
                         @endif
                     </ul>
-                    {{-- <div class="flex justify-center mt-48 mb-4 w-full">
-                        <div class="relative">
-                            <div class="text-gray-300 absolute ml-4 inset-0 m-auto w-4 h-4">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg2.svg" alt="Search">
-                            </div>
-                            <input class="bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-100 rounded w-full text-sm text-gray-300 placeholder-gray-400 bg-gray-100 pl-10 py-2" type="text" placeholder="Search" />
-                        </div>
-                    </div> --}}
                 </div>
-                {{-- <div class="px-8 border-t border-gray-700">
-                    <ul class="w-full flex items-center justify-between bg-gray-800">
-                        <li class="cursor-pointer text-white pt-5 pb-3">
-                            <button aria-label="show notifications" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg3.svg" alt="notifications">
-                            </button>
-                        </li>
-                        <li class="cursor-pointer text-white pt-5 pb-3">
-                            <button aria-label="open chats" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg4.svg" alt="chat">
-                            </button>
-                        </li>
-                        <li class="cursor-pointer text-white pt-5 pb-3">
-                            <button aria-label="open settings" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg5.svg" alt="settings">
-                            </button>
-                        </li>
-                        <li class="cursor-pointer text-white pt-5 pb-3">
-                            <button aria-label="open logs" class="focus:outline-none focus:ring-2 rounded focus:ring-gray-300">
-                                <img src="https://tuk-cdn.s3.amazonaws.com/can-uploader/light_with_icons_at_bottom-svg6.svg" alt="drawer">
-                            </button>
-                        </li>
-                    </ul>
-                </div> --}}
             </div>
             <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
                     <ul class="mt-12">
@@ -113,20 +79,14 @@
                         @else
                             @foreach($followArtistProfiles as $profile)
                             <li class="flex w-full text-gray-300 cursor-pointer items-center mb-6">
+                                <div class="flex">
+                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
+                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
+                                </div>
                                 <form style="margin-top:1.5px;" action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
                                     <input type="submit" value="unfllow" class="py-1 px-3 mr-5 bg-gray-600 rounded text-gray-300 flex items-center justify-center text-xs">
                                 </form>
-                                <a href="javascript:void(0)" class="flex items-center focus:outline-none focus:ring-2 focus:ring-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z"></path>
-                                        <rect x="4" y="4" width="6" height="6" rx="1"></rect>
-                                        <rect x="14" y="4" width="6" height="6" rx="1"></rect>
-                                        <rect x="4" y="14" width="6" height="6" rx="1"></rect>
-                                        <rect x="14" y="14" width="6" height="6" rx="1"></rect>
-                                    </svg>
-                                </a>
-                                <h1 class="text-sm">{{ $profile['name']}}</h1>
                             </li>
                             @endforeach
                         @endif
