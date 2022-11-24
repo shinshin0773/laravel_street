@@ -33,11 +33,11 @@
                                 @else
                                 <form action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="unFollow" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+                                    <input type="submit" value="unFollow" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-5 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="width:100px;">
                                 </form>
                                 @endif
                               @else
-                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;">Follow</button>
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;"">Follow</button>
                               @endif
 
                               @if (Auth::id())
@@ -53,10 +53,10 @@
                                 </form>
                                 @endif
                                 @else
-                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;">Like</button>
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;">Like</button>
                               @endif
 
-                              <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class="text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;">詳細Map</button>
+                              <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class=" text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;margin-right: 20px;">詳細Map</button>
 
                               {{-- <button onclick="location.href='{{ route('user.items.showMap', $post->id )}}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">詳細Map</button> --}}
 

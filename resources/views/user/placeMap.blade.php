@@ -59,7 +59,7 @@
 
                 infoWindow[i] = new google.maps.InfoWindow({ // 吹き出しの追加
                     content:
-                        '<div><a href=/show/' + markerData[i]['id'] + '}>'
+                        '<div><a href=/show/' + markerData[i]['id'] + '/' + '}>'
                         + markerData[i]['name'] + '<br>'
                         + markerData[i]['information'] + '<br>' +
                         '</a><a style="color: blue" href="https://www.google.co.jp/maps/?q='+ markerData[i]['lat'] + ',' + markerData[i]['lng'] + '" target="_blank" rel="noopener noreferrer">GoogleMapで確認する</a></div>'

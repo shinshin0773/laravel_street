@@ -6,7 +6,7 @@
 #content {
     background-size: cover;
     border-top:1px groove rgb(0,128,128);
-    height: 1600px;
+    height: 1400px;
     background-image:url(../images/background-image.jpeg);
 }
 
@@ -150,4 +150,11 @@
     width: 224px;
     height: 149.328px;
   }
+}
+
+/* 480px以下に適用されるCSS（スマホ用） */
+@media screen and (max-width: 480px) {
+    #content {
+        height: 100%;
+    }
 }

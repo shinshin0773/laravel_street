@@ -11,7 +11,7 @@
     {{-- フォロー中のアーティストのタイムライン --}}
     <div class="py-12 w-full">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="md:bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="lg:flex lg:flex-wrap">
                     @if($posts === null)
                       <div class="mx-auto">
@@ -20,9 +20,9 @@
                     @else
                         @foreach($posts as $post)
                         {{-- @for($ii = 0;$ii < count($post); $ii++) --}}
-                            <div class="lg:w-1/4 lg:p-4 mt-3">
+                            <div class="lg:w-1/4 lg:p-4 my-3">
                                 <a href="{{ route('user.items.show',['item' => $post['id'],'artist_id' => $post['artist_profile_id']])}}">
-                                    <div class="border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
+                                    <div class="bg-white border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
                                         <img src="{{ $post['file_path']}}" alt="サムネイル" class="post-image">
                                         <div class="mt-3">
                                             <div class="text-gray-700">名前：{{ $post['name'] }}</div>
