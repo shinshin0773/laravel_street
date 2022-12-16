@@ -59,6 +59,7 @@ class ArtistProfileController extends Controller
                 // アップロードされたファイル名を取得
                 $file_name = $request->file('image')->getClientOriginalName();
 
+
                 $request->file('image')->storeAs('public/' . $dir, $file_name);
 
                 $profile = ArtistProfile::create([
