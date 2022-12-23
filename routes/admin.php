@@ -37,6 +37,13 @@ Route::prefix('expired-artists')->
         Route::post('destroy/{artist}',[ArtistsController::class, 'expiredArtistDestroy'])->name('expired-artists.destroy');
 });
 
+Route::post('recognizing/{artist}',[ArtistsController::class, 'recognizing'])
+            ->middleware(['auth:admin'])
+            ->name('artist.recognizing');
+
+Route::post('unrecognizing/{artist}',[ArtistsController::class, 'unrecognizing'])
+            ->middleware(['auth:admin'])
+            ->name('artist.unrecognizing');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

@@ -85,7 +85,15 @@
                                 @endif
                               </div>
                               <div class="flex flex-col items-center text-center justify-center">
-                                <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{{$post->artistprofile->name}}</h2>
+                                <div class="flex">
+                                    <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{{$post->artistprofile->name}}</h2>
+                                    @if($post->artistprofile->artist->recognized)
+                                        <div class="flex" style="margin-top: 20px; margin-left: 10px;">
+                                            <img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4">
+                                            <span>公認</span>
+                                        </div>
+                                    @endif
+                                </div>
                                 <div class="w-12 h-1 bg-indigo-500 rounded mt-2 mb-4"></div>
                                 <p class="text-base">{{$post->artistprofile->information}}</p>
                               </div>

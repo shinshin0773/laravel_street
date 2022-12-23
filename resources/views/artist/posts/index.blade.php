@@ -51,5 +51,6 @@
                 document.getElementById('delete_'+e.dataset.id).submit();
             }
         }
+
     </script>
 </x-app-layout>

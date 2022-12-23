@@ -70,7 +70,12 @@
                                 <div class="bg-white border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
                                     <img src="{{asset($post->file_path)}}" alt="サムネイル" class="post-image">
                                     <div class="mt-3">
-                                        <div class="text-gray-700">名前：{{ $post->name }}</div>
+                                        <div class="flex">
+                                            <div class="text-gray-700 mr-2">名前：{{ $post->name }}</div>
+                                            @if($post->artistprofile->artist->recognized)
+                                                <img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4">
+                                            @endif
+                                        </div>
                                         <div class="text-gray-700 post-content">内容：{{ $post->information }}</div>
                                         <div class="text-gray-700">場所：{{ $post->place }}</div>
                                         <div class="text-gray-700">開催時刻：<br>{{ $post->holding_time->format('Y年m月d日 H時i分') }}</div>

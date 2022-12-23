@@ -29,11 +29,27 @@
                                   <td class="md:px-4 py-3">{{ $artist->name }}</td>
                                   <td class="md:px-4 py-3">{{ $artist->email }}</td>
                                   <td class="md:px-4 py-3">{{ $artist->created_at->diffForHumans() }}</td>
+                                  @if($artist->recognized)
+                                    <form method="post" id="deauthenticate_{{ $artist->id }}" action="{{ route('admin.artist.unrecognizing',['artist' => $artist->id ])}}" >
+                                        @csrf
+                                        <td class="w-10 text-center">
+                                            <button href="#" data-id="{{ $artist->id }}" onclick="deauthenticateArtist(this)" class="mr-3 text-white bg-yellow-400 border-0 py-2 md:px-4 focus:outline-none hover:bg-yellow-500 rounded" style="width: 100px;">公認解除</button>
+                                        </td>
+                                    </form>
+                                  @else
+                                    <form method="post" id="recognizing_{{ $artist->id }}" action="{{ route('admin.artist.recognizing',['artist' => $artist->id ])}}" >
+                                        @csrf
+                                        <td class="w-10 text-center">
+                                            <button href="#" data-id="{{ $artist->id }}" onclick="recognizingArtist(this)" class="mr-3 text-white bg-yellow-400 border-0 py-2 md:px-4 focus:outline-none hover:bg-yellow-500 rounded" style="width: 100px;">公認</button>
+                                        </td>
+                                    </form>
+                                  @endif
+
                                   <form method="post" id="delete_{{$artist->id}}" action="{{ route('admin.artists.destroy',['artist' => $artist->id] )}}">
                                     @csrf
                                     @method('delete')
                                     <td class="w-10 text-center">
-                                        <button href="#" data-id="{{ $artist->id }}" onclick="deletePost(this)" onclick="deletePost(this)" class="text-white bg-red-400 border-0 py-2 md:px-4 focus:outline-none hover:bg-red-500 rounded" style="width: 100px;">削除</button>
+                                        <button href="#" data-id="{{ $artist->id }}" onclick="deleteAccount(this)" class="mr-3 text-white bg-red-400 border-0 py-2 md:px-4 focus:outline-none hover:bg-red-500 rounded" style="width: 100px;">削除</button>
                                     </td>
                                   </form>
                                 </tr>
@@ -49,10 +65,27 @@
         </div>
     </div>
     <script>
-        function deletePost(e) {
+        //
+        function deleteAccount(e) {
             'use strict';
-            if(confirm('本当に削除してもいいですか？')){
+            if(confirm('本当にアカウントを削除しますか？')){
                 document.getElementById('delete_' + e.dataset.id).submit();
+            }
+        }
+
+        //アーティストの認証をする関数
+        function recognizingArtist(e){
+            'use strict';
+            if(confirm('このアーティストを認証しますか？')){
+                document.getElementById('recognizing_'+e.dataset.id).submit();
+            }
+        }
+
+        //アーティストの認証を解除する関数
+        function deauthenticateArtist(e){
+            'use strict';
+            if(confirm('このアーティストの認証を解除しますか？')){
+                document.getElementById('deauthenticate_'+e.dataset.id).submit();
             }
         }
     </script>

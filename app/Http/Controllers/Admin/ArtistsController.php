@@ -24,23 +24,7 @@ class ArtistsController extends Controller
 
     public function index()
     {
-        // $date_now = Carbon::now();
-        // $date_parse = Carbon::parse(now());
-        // echo $date_now;
-        // echo $date_parse;
-        // echo $date_now->year; //年だけ取得
-
-        // $e_all = Artist::all(); //エロくアントで全て取得
-        // $q_get = DB::table('artists')->select('name','created_at')->get(); //nameを指定して取得
-        // $q_first = DB::table('artists')->select('name')->first(); //一つ目のデータだけ取ってくる
-
-        // $c_test = collect([
-        //     'name' => 'テスト'
-        // ]);
-
-         // var_dump($q_first);
-        // dd($e_all, $q_get, $q_first, $c_test);
-        $artists = Artist::select('name','email','created_at','id')->paginate(3);
+        $artists = Artist::select('name','email','created_at','recognized','id')->paginate(3);
         return view('admin.artists.index',compact('artists'));
     }
 
@@ -111,8 +95,46 @@ class ArtistsController extends Controller
 
         return redirect()
         ->route('admin.artists.index')
-        ->with(['message' => 'オーナー情報を削除しました',
+        ->with(['message' => 'アーティスト情報を削除しました',
         'status' => 'alert']);
+    }
+
+    /**
+     * 管理者がアーティストを公認する
+     *
+     *
+     * @param int $artist_id
+     * @param パラメーターの$artist_idから取得したコレクション $artist
+     * @return
+     */
+    public function recognizing($id){
+        $artist = Artist::findOrFail($id);
+        $artist->recognized = True;
+
+        $artist->save();
+        return redirect()
+        ->route('admin.artists.index')
+        ->with(['message' => 'アーティストを認証しました',
+        'status' => 'info']);
+    }
+
+    /**
+     * 管理者がアーティストを公認を解除する処理
+     *
+     *
+     * @param int $artist_id
+     * @param パラメーターの$artist_idから取得したコレクション $artist
+     * @return
+     */
+    public function unrecognizing($id){
+        $artist = Artist::findOrFail($id);
+        $artist->recognized = False;
+
+        $artist->save();
+        return redirect()
+        ->route('admin.artists.index')
+        ->with(['message' => 'アーティストを認証を解除しました',
+        'status' => 'info']);
     }
 
     public function expiredArtistIndex(){

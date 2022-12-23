@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArtistProfile;
 use App\Models\Follow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,9 +86,6 @@ class ItemController extends Controller
     {
         // //一つだけ取得
         $posts = Posts::all();
-
-        // $lat = $post->lat;
-        // $lng = $post->lng;
 
         return view('user.placeMap',compact('posts'));
     }
