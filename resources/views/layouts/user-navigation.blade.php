@@ -22,6 +22,9 @@
                     <x-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
                         タイムライン
                     </x-nav-link>
+                    <x-nav-link :href="route('user.items.showPoint')" :active="request()->routeIs('user.items.showPoint')">
+                        ゴールド購入
+                    </x-nav-link>
                 </div>
             </div>
 

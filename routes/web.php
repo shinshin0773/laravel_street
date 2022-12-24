@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LifeCycleTestController;
 use App\Http\Controllers\User\FollowController;
+use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\ItemController;
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Route::post('show/{item}/unlike',[ItemController::class, 'unlike'])->name('items
 Route::post('show/{item}/follow',[FollowController::class, 'follow'])->name('items.follow');
 Route::post('show/{item}/unfollow',[FollowController::class, 'unfollow'])->name('items.unfollow');
 Route::get('/followList',[FollowController::class, 'index'])->name('items.followList');
+Route::get('/showPoint',[UserProfileController::class, 'showPoint'])->name('items.showPoint');
 Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
+Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
 // Route::get('/followArtist',[FollowController::class, 'show'])->name('items.followArtist');
 
 // Route::get('/show/{item}/map', function() {

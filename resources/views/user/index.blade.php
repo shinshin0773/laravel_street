@@ -62,7 +62,7 @@
                         @foreach($posts as $post)
                         @if($post === null)
                             <div class="bg-white h-10">
-                                <p>aa</p>
+                                <p>投稿がありません</p>
                             </div>
                         @else
                         <div class="md:w-1/4 md:p-4 mt-3">
