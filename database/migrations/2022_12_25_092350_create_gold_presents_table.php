@@ -21,6 +21,7 @@ class CreateGoldPresentsTable extends Migration
             $table->timestamps();
 
             $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

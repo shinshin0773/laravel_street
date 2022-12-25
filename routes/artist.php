@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Artist\ArtistController;
 use App\Http\Controllers\Artist\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Artist\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Artist\Auth\EmailVerificationNotificationController;
@@ -38,9 +39,9 @@ Route::prefix('profile')->
 });
 
 
-Route::get('/dashboard', function () {
-    return view('artist.dashboard');
-})->middleware(['auth:artists'])->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
+Route::get('/dashboard', [ArtistController::class,'index'])
+                ->middleware(['auth:artists'])
+                ->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
 // Route::resource('profile', ArtistProfileController::class)
 // ->middleware(['auth:artists'])->except(['show']);
