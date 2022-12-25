@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ArtistProfile;
+use App\Models\User;
 
 class Artist extends Authenticatable
 {
@@ -45,5 +46,10 @@ class Artist extends Authenticatable
     public function artistProfile()
     {
         return $this->hasOne(ArtistProfile::class); //紐づいているモデルを取得する
+    }
+
+    public function user()
+    {
+        return $this->belongsToMany(User::class,'gold_presents')->withPivot(['user_id','present_gold','created_at']);
     }
 }

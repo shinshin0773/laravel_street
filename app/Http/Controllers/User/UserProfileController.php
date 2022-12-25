@@ -36,7 +36,7 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 単発決済用のコード
      *
      * @return \Illuminate\Http\Response
      */
@@ -44,6 +44,7 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
 
+        //決済処理のプログラム
         try {
             Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
 

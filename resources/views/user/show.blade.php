@@ -67,6 +67,75 @@
                                     Tweet
                                 </button>
                               </a>
+
+                              @if (Auth::id())
+                              <div class="tooltip2 w-16 h-16 rounded-full bg-blue-300 text-white font-bold" style="text-align:center;line-height: 63px;">
+                                <p>投げ銭</p>
+                                <div class="description2 w-full">
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline" style="margin-right: 7px;">50Gold</p>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" value="50">
+                                            <input type="hidden" value="{{ $post->artistprofile->artist->id }}">
+                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                                present
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">100Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">200Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">300Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">400Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">500Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">700Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                    <div class="w-1/2 flex mt-1.5">
+                                        <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
+                                        <p class="mt-1 " class="inline">1000Gold</p>
+                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                            present
+                                        </button>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
                             </div>
                           </div>
                         </div>
@@ -89,7 +158,11 @@
                                     <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{{$post->artistprofile->name}}</h2>
                                     @if($post->artistprofile->artist->recognized)
                                         <div class="flex" style="margin-top: 20px; margin-left: 10px;">
-                                            <img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4">
+                                            <button data-tooltip-target="tooltip-default" type="button"><img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4"></button>
+                                            <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-blue-500 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                              このアカウントは認定されています
+                                              <div class="tooltip-arrow" data-popper-arrow></div>
+                                            </div>
                                             <span>公認</span>
                                         </div>
                                     @endif
@@ -119,6 +192,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </x-app-layout>
 <script>

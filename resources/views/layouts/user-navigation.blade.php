@@ -82,6 +82,9 @@
             <x-responsive-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
                 {{ __('タイムライン') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.items.showPoint')" :active="request()->routeIs('user.items.showPoint')">
+                {{ __('ゴールド購入') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

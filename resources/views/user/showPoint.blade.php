@@ -16,8 +16,8 @@
                 </div>
             </div>
 
-            <div class="md:9/12" style="margin-bottom: 600px">
-                <h1 class="text-3xl">ゴールド購入</h1>
+            <div class="pt-4 md:9/12" style="margin-bottom: 600px">
+                <h1 class="pb-4 text-3xl">ゴールド購入</h1>
                 <div class="flex flex-wrap" style="margin-left: 70px">
                     {{-- それぞれの単価のボックス --}}
                     <div class="md:w-1/2 w-full flex py-4">

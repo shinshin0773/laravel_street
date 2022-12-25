@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 use App\Models\Posts;
-use App\Models\ArtistProfile;
 use App\Models\Artist;
 
 
@@ -59,5 +59,12 @@ class User extends Authenticatable
     public function followArtist()
     {
         return $this->belongsToMany(Artist::class, 'follows')->withPivot(['created_at']);
+    }
+
+
+    //belongsToMany()第二引数に中間テーブル名
+    public function artist()
+    {
+        return $this->belongsToMany(Artist::class,'gold_presents')->withPivot(['artist_id','present_gold','created_at']);
     }
 }

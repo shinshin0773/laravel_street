@@ -72,8 +72,13 @@
                                     <div class="mt-3">
                                         <div class="flex">
                                             <div class="text-gray-700 mr-2">名前：{{ $post->name }}</div>
+                                            {{-- 認証バッチ --}}
                                             @if($post->artistprofile->artist->recognized)
-                                                <img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4">
+                                                <button data-tooltip-target="tooltip-default" type="button"><img src="{{ asset('images/icons-recognize.png')}}" class="w-5 h-5 mt-0.4"></button>
+                                                <div id="tooltip-default" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-blue-500 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                                                    このアカウントは認定されています
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             @endif
                                         </div>
                                         <div class="text-gray-700 post-content">内容：{{ $post->information }}</div>
