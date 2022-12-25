@@ -7,6 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <x-flash-message status="session('status')" />
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <section class="text-gray-600 body-font">
@@ -77,11 +78,9 @@
                                         <p class="mt-1 " class="inline" style="margin-right: 7px;">50Gold</p>
                                         <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
                                             @csrf
-                                            <input type="hidden" value="50">
-                                            <input type="hidden" value="{{ $post->artistprofile->artist->id }}">
-                                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                                present
-                                            </button>
+                                            <input type="hidden" name="gold" value="50">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
                                         </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">

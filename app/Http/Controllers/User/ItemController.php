@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\ArtistProfile;
 use App\Models\Follow;
+use App\Models\GoldPresent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Posts;
@@ -88,6 +89,33 @@ class ItemController extends Controller
         $posts = Posts::all();
 
         return view('user.placeMap',compact('posts'));
+    }
+
+    //ユーザーがアーティストに投げ銭をした時
+    public function present(Request $request)
+    {
+        $user = Auth::user();
+
+        if($user->gold >= $request->gold){
+            GoldPresent::create([
+                'user_id' => Auth::id(),
+                'artist_id' => $request->artist_id,
+                'present_gold' => $request->gold,
+            ]);
+
+            //ユーザーのゴールドを減らす
+            $user->gold = $user->gold - $request->gold;
+            $user->save();
+
+            return back()
+            ->with(['message' => "アーティストに対して{$request->gold}Goldプレゼントしました。",
+            'status' => 'info']);
+        }else {
+            return back()
+            ->with(['message' => "ゴールドが足りませんでした。ゴールドを購入してください",
+            'status' => 'alert']);
+        }
+
     }
 
     //いいねした時

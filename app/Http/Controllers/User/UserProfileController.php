@@ -63,7 +63,9 @@ class UserProfileController extends Controller
             $user->gold = $user->gold + $request->gold;
             $user->save();
 
-            return back();
+            return back()
+            ->with(['message' => "{$request->gold}Gold加算されました",
+            'status' => 'info']);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }

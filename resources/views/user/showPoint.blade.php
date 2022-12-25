@@ -5,6 +5,7 @@
         </h2>
     </x-slot>
     <div class="text-center text-white bg-black font-bold" id="top">
+
         <div class="md:flex max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="md:mr-20 md:w-3/12">
                 <div style="background-color: #202020; border-radius: 3px;padding: 15px;">
@@ -17,7 +18,8 @@
             </div>
 
             <div class="pt-4 md:9/12" style="margin-bottom: 600px">
-                <h1 class="pb-4 text-3xl">ゴールド購入</h1>
+                <x-flash-message status="session('status')" />
+                <h1 class="pb-4 text-3xl mt-3">ゴールド購入</h1>
                 <div class="flex flex-wrap" style="margin-left: 70px">
                     {{-- それぞれの単価のボックス --}}
                     <div class="md:w-1/2 w-full flex py-4">

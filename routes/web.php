@@ -33,7 +33,7 @@ Route::get('/followList',[FollowController::class, 'index'])->name('items.follow
 Route::get('/showPoint',[UserProfileController::class, 'showPoint'])->name('items.showPoint');
 Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
 Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
-Route::post('/present',[UserProfileController::class, 'present'])->name('items.present');
+Route::post('/present',[ItemController::class, 'present'])->name('items.present');
 
 // Route::get('/followArtist',[FollowController::class, 'show'])->name('items.followArtist');
 
