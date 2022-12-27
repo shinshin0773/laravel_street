@@ -22,6 +22,9 @@
                     <x-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
                         タイムライン
                     </x-nav-link>
+                    <x-nav-link :href="route('user.profile.notification')" :active="request()->routeIs('user.profile.notification')">
+                        通知
+                    </x-nav-link>
                     <x-nav-link :href="route('user.items.showPoint')" :active="request()->routeIs('user.items.showPoint')">
                         ゴールド購入
                     </x-nav-link>
@@ -81,6 +84,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.items.followList')" :active="request()->routeIs('user.items.followList')">
                 {{ __('タイムライン') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.profile.notification')" :active="request()->routeIs('user.profile.notification')">
+                {{ __('通知') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('user.items.showPoint')" :active="request()->routeIs('user.items.showPoint')">
                 {{ __('ゴールド購入') }}

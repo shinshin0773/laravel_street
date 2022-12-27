@@ -119,8 +119,9 @@ class ItemController extends Controller
     }
 
     //いいねした時
-    public function like($id)
+    public function like(Request $request,$id)
     {
+        // dd($request->artist_id);
         $post = Posts::findOrFail($id);
 
         $post->like = $post->like + 1;
@@ -130,6 +131,7 @@ class ItemController extends Controller
         Likes::create([
             'user_id' => Auth::id(),
             'post_id' => $id,
+            'artist_id' => $request->artist_id,
           ]);
 
         return redirect()

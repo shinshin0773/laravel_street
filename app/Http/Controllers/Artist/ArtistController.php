@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Artist;
 
 use App\Http\Controllers\Controller;
+use App\Models\Follow;
 use App\Models\GoldPresent;
+use App\Models\Likes;
+use App\Models\Posts;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +35,46 @@ class ArtistController extends Controller
         }
 
         return view('artist.dashboard',compact('within_sum_gold'));
+    }
+
+    /**
+     *  通知リストの処理
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function notification(){
+        $presents_collection = GoldPresent::where('artist_id', Auth::id())->get();
+        $likes_collection = Likes::where('artist_id', Auth::id())->get();
+        $followers_collection = Follow::where('artist_id', Auth::id())->get();
+
+        foreach($presents_collection as $presents_user){
+            $user_collection[] = User::where('id', $presents_user->user_id)->get();
+            $present_golds[] = $presents_user->present_gold;
+        }
+
+        foreach($likes_collection as $collection){
+            $array_likes[] = User::where('id', $collection->user_id)->get();
+            $array_posts[] = Posts::where('id', $collection->post_id)->get();
+        }
+
+        foreach($followers_collection as $collection){
+            $array_followers[] = User::where('id', $collection->user_id)->get();
+        }
+
+        function collectionToArray($collections){
+            foreach($collections as $collection){
+                $array_collection[] = User::where('id', $collection->user_id)->get();
+                return $array_collection;
+            }
+        }
+        // dd($follow_array_collection);
+
+        // $array_likes = collectionToArray($likes_collection);
+        // $array_followers = collectionToArray($followers_collection);
+
+        // dd($array_likes);
+
+        return view('artist.notification',compact('user_collection','present_golds','array_likes','array_posts','array_followers'));
     }
 
     /**

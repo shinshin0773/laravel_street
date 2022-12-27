@@ -34,6 +34,8 @@ Route::get('/showPoint',[UserProfileController::class, 'showPoint'])->name('item
 Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
 Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
 Route::post('/present',[ItemController::class, 'present'])->name('items.present');
+Route::get('/notification',[UserProfileController::class, 'notification'])->name('profile.notification');
+
 
 // Route::get('/followArtist',[FollowController::class, 'show'])->name('items.followArtist');
 

@@ -43,6 +43,10 @@ Route::get('/dashboard', [ArtistController::class,'index'])
                 ->middleware(['auth:artists'])
                 ->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
+Route::get('/notifications', [ArtistController::class,'notification'])
+                ->middleware(['auth:artists'])
+                ->name('profile.notifications'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
+
 // Route::resource('profile', ArtistProfileController::class)
 // ->middleware(['auth:artists'])->except(['show']);
 

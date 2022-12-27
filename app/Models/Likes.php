@@ -12,5 +12,7 @@ class Likes extends Model
     protected $fillable = [
         'user_id',
         'post_id',
+        'artist_id',
+        'created_at'
     ];
 }

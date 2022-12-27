@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Follow;
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -69,6 +71,38 @@ class UserProfileController extends Controller
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
+    }
+
+    /**
+     * ユーザーの通知確認のページ
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function notification()
+    {
+        //自分がフォローしているアーティストのIDを取得
+        $followArtistsId = Follow::where('user_id', Auth::id())->get();
+
+        if($followArtistsId->count()){
+            //フォロー中のアーティストIDと一致した投稿を取得
+            $followArtistPosts = $followArtistsId->map(function ($item, $key) {
+                $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
+                return $posts;
+            });
+            for($i=0; $i < count($followArtistPosts); $i++){
+                    for($j = 0; $j < count($followArtistPosts[$i]); $j++){
+                        $followArtistPostsList[] = $followArtistPosts[$i][$j];
+                }
+            }
+            //フォロー中のアーティストの投稿を投稿日時が最新順で取得
+            array_multisort( array_map( "strtotime", array_column( $followArtistPostsList, "created_at" ) ), SORT_DESC, $followArtistPostsList ) ;
+        }else {
+            $followArtistPostsList = null;
+        }
+
+
+
+        return view('user.notification',compact('followArtistPostsList'));
     }
 
     /**

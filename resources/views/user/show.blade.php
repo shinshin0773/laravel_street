@@ -23,7 +23,7 @@
                             <p class="text-gray-900 lg:text-lg">開催地：{{ $post->place }}</p>
                             <p class="text-gray-900 lg:text-lg">開催日時:{{ $post->holding_time->format('Y年m月d日 H時i分') }}</p>
                             <p class="text-gray-900 lg:text-lg mb-8">終了予定時間：{{ $post->finish_time->format('Y年m月d日 H時i分') }}</p>
-                            <p class="text-gray-900 lg:text-lg mb-8">いいね数 {{ $post->like }}</p>
+                            <p class="text-gray-900 lg:text-lg mb-8">行きたい {{ $post->like }}人</p>
                             <div>
                               @if (Auth::id())
                                 @if($followCheck === false)
@@ -45,16 +45,17 @@
                                 @if($likeCheck === false)
                                 <form action="{{ route('user.items.like',$post->id)}}" method="POST" style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="Like" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+                                    <input type="hidden" name="artist_id" value="{{ $post->artist_profile_id }}">
+                                    <input type="submit" value="行きたい" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
                                 </form>
                                 @else
                                 <form action="{{ route('user.items.unlike',$post->id)}}" method="POST" style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="unLike" class="inline-flex text-red-600 bg-white border-2 border-red-600 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+                                    <input type="submit" value="行きたい解除" class="inline-flex text-red-600 bg-white border-2 border-red-600 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
                                 </form>
                                 @endif
                                 @else
-                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;">Like</button>
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;">行きたい</button>
                               @endif
 
                               <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class=" text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;margin-right: 20px;">詳細Map</button>

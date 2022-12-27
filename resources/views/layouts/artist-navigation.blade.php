@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('artist.posts.index')" :active="request()->routeIs('artist.posts.index')">
                         Post
                     </x-nav-link>
+                    <x-nav-link :href="route('artist.profile.notifications')" :active="request()->routeIs('artist.profile.notifications')">
+                        Notifications
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('artist.posts.index')" :active="request()->routeIs('artist.posts.index')">
                 Post
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('artist.profile.notifications')" :active="request()->routeIs('artist.profile.notifications')">
+                Notifications
             </x-responsive-nav-link>
         </div>
 

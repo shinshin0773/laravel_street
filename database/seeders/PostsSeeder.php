@@ -26,6 +26,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-03 19:30:00',
               'finish_time' => '2023-02-03 21:00:00',
               'file_path' => 'storage/postImage/幾田りら__☺︎_.jpeg',
+              'created_at' => '2022-12-03 00:17:05',
             ],
             [
               'name' => 'DAITO',
@@ -38,6 +39,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-08 21:00:00',
               'finish_time' => '2023-02-08 23:00:00',
               'file_path' => 'storage/postImage/top.jpeg',
+              'created_at' => '2022-12-05 00:17:05',
             ],
             [
               'name' => 'tagawawa',
@@ -50,6 +52,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-5 17:30:00',
               'finish_time' => '2023-02-11 21:00:00',
               'file_path' => 'storage/postImage/artist7.jpg',
+              'created_at' => '2022-12-08 00:17:05',
             ],
             [
               'name' => 'Kuwatata',
@@ -62,6 +65,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-13 21:30:00',
               'finish_time' => '2023-02-13 22:00:00',
               'file_path' => 'storage/postImage/chizu on Twitter.jpeg',
+              'created_at' => '2022-12-10 00:17:05',
             ],
             [
               'name' => 'Shin',
@@ -74,6 +78,7 @@ class PostsSeeder extends Seeder
       'holding_time' => '2023-02-13 21:30:00',
               'finish_time' => '2023-02-13 22:00:00',
               'file_path' => 'storage/postImage/chizu on Twitter.jpeg',
+              'created_at' => '2022-12-12 00:17:05',
             ],
             [
               'name' => 'Shin',
@@ -86,6 +91,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-27 20:30:00',
               'finish_time' => '2023-02-27 21:30:00',
               'file_path' => 'storage/postImage/artist1.jpg',
+              'created_at' => '2022-12-14 00:17:05',
             ],
             [
               'name' => 'Himena',
@@ -98,6 +104,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-08 17:30:00',
               'finish_time' => '2023-02-08 21:00:00',
               'file_path' => 'storage/postImage/幾田りら__☺︎_.jpeg',
+              'created_at' => '2022-12-16 00:17:05',
             ],
             [
               'name' => 'DAITO',
@@ -110,6 +117,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-10 17:00:00',
               'finish_time' => '2023-02-08 21:00:00',
               'file_path' => 'storage/postImage/artist3.jpg',
+              'created_at' => '2022-12-19 00:17:05',
             ],
             [
               'name' => 'tagawawa',
@@ -122,6 +130,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-13 17:30:00',
               'finish_time' => '2023-02-13 21:00:00',
               'file_path' => 'storage/postImage/artist1.jpg',
+              'created_at' => '2022-12-20 00:17:05',
             ],
             [
               'name' => 'Kuwatata',
@@ -134,6 +143,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-21 18:30:00',
               'finish_time' => '2023-02-11 21:00:00',
               'file_path' => 'storage/postImage/artist2.jpg',
+              'created_at' => '2022-12-21 00:17:05',
             ],
             [
               'name' => 'きゃない',
@@ -150,6 +160,7 @@ class PostsSeeder extends Seeder
               'holding_time' => '2023-02-13 18:30:00',
               'finish_time' => '2023-02-13 21:00:00',
               'file_path' => 'storage/postImage/kyanai.jpg',
+              'created_at' => '2022-12-23 00:17:05',
             ],
           ]);
         }

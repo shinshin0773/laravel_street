@@ -16,6 +16,53 @@ use Illuminate\Database\Console\DumpCommand;
 
 class FollowController extends Controller
 {
+    public function index()
+    {
+        // $user = User::findOrFail(Auth::id());
+        // $artists = $user->followArtist;
+
+        //自分がフォローしているアーティストのIDを取得
+        $followArtistsId = Follow::where('user_id', Auth::id())->get();
+
+
+
+       if($followArtistsId->count()){
+           //フォロー中のアーティストのプロフィール情報を取得
+            $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
+                $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->get();
+                return $profiles;
+            });
+
+            for($i=0; $i < count($followArtistProfileList); $i++){
+                    $followArtistProfiles[] = $followArtistProfileList[$i][0];
+                    // $collProfile = collect($followArtistProfiles[$i]);
+                    // $followArtistProfiles = $this->paginate($collProfile, 2,null, ['path'=>'/followList']);
+             }
+
+            //フォロー中のアーティストIDと一致した投稿を取得
+            $followArtistPosts = $followArtistsId->map(function ($item, $key) {
+                $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
+                return $posts;
+            });
+            for($i=0; $i < count($followArtistPosts); $i++){
+                    for($j = 0; $j < count($followArtistPosts[$i]); $j++){
+                        $followArtistPostsList[] = $followArtistPosts[$i][$j];
+                    }
+            }
+            array_multisort( array_map( "strtotime", array_column( $followArtistPostsList, "holding_time" ) ), SORT_ASC, $followArtistPostsList ) ;
+
+            //配列をコレクション型に変更してページネーションをできるようにする
+            $coll = collect($followArtistPostsList);
+            $posts = $this->paginate($coll, 8,null, ['path'=>'/followList']);
+        }else {
+            $posts = null;
+            $followArtistProfiles = null;
+        }
+
+
+        return view('user.followList',compact('posts','followArtistProfiles'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -42,59 +89,7 @@ class FollowController extends Controller
         return redirect()->back();
     }
 
-    public function index()
-    {
-        // $user = User::findOrFail(Auth::id());
-        // $artists = $user->followArtist;
 
-        //自分がフォローしているアーティストのIDを取得
-        $followArtistsId = Follow::where('user_id', Auth::id())->get();
-
-
-
-       if($followArtistsId->count()){
-           //フォロー中のアーティストのプロフィール情報を取得
-            $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
-                $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->get();
-                return $profiles;
-            });
-
-            for($i=0; $i < count($followArtistProfileList); $i++){
-                    $followArtistProfiles[] = $followArtistProfileList[$i][0];
-                    // $collProfile = collect($followArtistProfiles[$i]);
-                    // $followArtistProfiles = $this->paginate($collProfile, 2,null, ['path'=>'/followList']);
-             }
-
-            //  //配列をコレクション型に変更してページネーションをできるようにする
-            // $followArtistProfiles = $this->paginate($collProfile, 1,null, ['path'=>'/followList']);
-
-            // foreach($followArtistProfiles as $profile){
-            //     dd($profile[0]['name']);
-            // }
-
-            //フォロー中のアーティストIDと一致した投稿を取得
-            $followArtistPosts = $followArtistsId->map(function ($item, $key) {
-                $posts =  Posts::where('artist_profile_id', $item->artist_id)->get();
-                return $posts;
-            });
-            for($i=0; $i < count($followArtistPosts); $i++){
-                    for($j = 0; $j < count($followArtistPosts[$i]); $j++){
-                        $followArtistPostsList[] = $followArtistPosts[$i][$j];
-                    }
-            }
-            array_multisort( array_map( "strtotime", array_column( $followArtistPostsList, "holding_time" ) ), SORT_ASC, $followArtistPostsList ) ;
-
-            //配列をコレクション型に変更してページネーションをできるようにする
-            $coll = collect($followArtistPostsList);
-            $posts = $this->paginate($coll, 8,null, ['path'=>'/followList']);
-        }else {
-            $posts = null;
-            $followArtistProfiles = null;
-        }
-
-
-        return view('user.followList',compact('posts','followArtistProfiles'));
-    }
 
     private function paginate($items, $perPage , $page = null, $options = [])
     {
