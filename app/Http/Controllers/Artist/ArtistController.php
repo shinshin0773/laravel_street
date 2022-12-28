@@ -47,26 +47,41 @@ class ArtistController extends Controller
         $likes_collection = Likes::where('artist_id', Auth::id())->get();
         $followers_collection = Follow::where('artist_id', Auth::id())->get();
 
-        foreach($presents_collection as $presents_user){
-            $user_collection[] = User::where('id', $presents_user->user_id)->get();
-            $present_golds[] = $presents_user->present_gold;
-        }
-
-        foreach($likes_collection as $collection){
-            $array_likes[] = User::where('id', $collection->user_id)->get();
-            $array_posts[] = Posts::where('id', $collection->post_id)->get();
-        }
-
-        foreach($followers_collection as $collection){
-            $array_followers[] = User::where('id', $collection->user_id)->get();
-        }
-
-        function collectionToArray($collections){
-            foreach($collections as $collection){
-                $array_collection[] = User::where('id', $collection->user_id)->get();
-                return $array_collection;
+        if($presents_collection->count()){
+            foreach($presents_collection as $presents_user){
+                $array_users[] = User::where('id', $presents_user->user_id)->get();
+                $array_presents[] = $presents_user->present_gold;
             }
+        }else {
+            $array_users[] = null;
+            $array_presents[] = null;
         }
+
+
+        if($likes_collection->count()){
+            foreach($likes_collection as $collection){
+                $array_likes[] = User::where('id', $collection->user_id)->get();
+                $array_posts[] = Posts::where('id', $collection->post_id)->get();
+            }
+        }else {
+            $array_likes[] = null;
+            $array_posts[] = null;
+        }
+
+        if($followers_collection->count()){
+            foreach($followers_collection as $collection){
+                $array_followers[] = User::where('id', $collection->user_id)->get();
+            }
+        }else {
+            $array_followers[] = null;
+        }
+
+        // function collectionToArray($collections){
+        //     foreach($collections as $collection){
+        //         $array_collection[] = User::where('id', $collection->user_id)->get();
+        //         return $array_collection;
+        //     }
+        // }
         // dd($follow_array_collection);
 
         // $array_likes = collectionToArray($likes_collection);
@@ -74,7 +89,7 @@ class ArtistController extends Controller
 
         // dd($array_likes);
 
-        return view('artist.notification',compact('user_collection','present_golds','array_likes','array_posts','array_followers'));
+        return view('artist.notification',compact('array_users','array_presents','array_likes','array_posts','array_followers'));
     }
 
     /**

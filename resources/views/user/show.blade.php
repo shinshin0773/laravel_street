@@ -87,51 +87,72 @@
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">100Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="100">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">200Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="200">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">300Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="300">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">400Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="400">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">500Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="500">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">700Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="700">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline">1000Gold</p>
-                                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
-                                            present
-                                        </button>
+                                        <form action="{{ route('user.items.present')}}" method="POST" style="margin-bottom: 10px;">
+                                            @csrf
+                                            <input type="hidden" name="gold" value="1000">
+                                            <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
+                                            <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
+                                        </form>
                                     </div>
                                 </div>
                                 @endif

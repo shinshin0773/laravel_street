@@ -110,7 +110,7 @@ class ItemController extends Controller
             return back()
             ->with(['message' => "アーティストに対して{$request->gold}Goldプレゼントしました。",
             'status' => 'info']);
-        }else {
+        } else {
             return back()
             ->with(['message' => "ゴールドが足りませんでした。ゴールドを購入してください",
             'status' => 'alert']);

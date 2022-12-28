@@ -24,32 +24,50 @@
                 </div>
                 <div id="myTabContent">
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        @for($i = 0;$i < count($user_collection); $i++)
+                        @if($array_users[0] === null)
                             <div class="border-b-2 border-indigo-500 py-2">
-                                {{-- <p>{{ $user_collection[$i][0] }}</p> --}}
-                                <p>{{ $user_collection[$i][0]->name }}</p>
-                                <p>{{ $user_collection[$i][0]->name }}さんから{{$present_golds[$i]}}プレゼントされました。</p>
+                                <p>まだ通知はありません</p>
                             </div>
-                        @endfor
+                        @else
+                            @for($i = 0;$i < count($array_users); $i++)
+                                <div class="border-b-2 border-indigo-500 py-2">
+                                    {{-- <p>{{ $user_collection[$i][0] }}</p> --}}
+                                    <p>{{ $array_users[$i][0]->name }}</p>
+                                    <p>{{ $array_users[$i][0]->name }}さんから{{$array_presents[$i]}}プレゼントされました。</p>
+                                </div>
+                            @endfor
+                        @endif
                     </div>
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                        @for($i = 0;$i < count($array_likes); $i++)
+                        @if($array_likes[0] === null)
                             <div class="border-b-2 border-indigo-500 py-2">
-                                {{-- <p>{{ $array_likes[$i][0]}}</p> --}}
-                                <p>{{ $array_likes[$i][0]->name}}がいく</p>
-                                <p class="text-lg mt-2">Content</p>
-                                <p class="text-sm">{{ $array_posts[$i][0]->information }}</p>
-                                <p class="text-sm">{{ $array_posts[$i][0]->place }}</p>
+                                <p>まだいいねはありません</p>
                             </div>
-                        @endfor
+                        @else
+                            @for($i = 0;$i < count($array_likes); $i++)
+                                <div class="border-b-2 border-indigo-500 py-2">
+                                    {{-- <p>{{ $array_likes[$i][0]}}</p> --}}
+                                    <p>{{ $array_likes[$i][0]->name}}がいく</p>
+                                    <p class="text-lg mt-2">Content</p>
+                                    <p class="text-sm">{{ $array_posts[$i][0]->information }}</p>
+                                    <p class="text-sm">{{ $array_posts[$i][0]->place }}</p>
+                                </div>
+                            @endfor
+                        @endif
                     </div>
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
-                        @for($i = 0;$i < count($array_followers); $i++)
+                        @if($array_followers[0] === null)
                             <div class="border-b-2 border-indigo-500 py-2">
-                                    <p>{{ $array_followers[$i][0]->name }}</p>
-                                    <p>{{ $array_followers[$i][0]->name }}さんからフォローされました。</p>
+                                <p>まだ通知はありません</p>
                             </div>
-                        @endfor
+                        @else
+                            @for($i = 0;$i < count($array_followers); $i++)
+                                <div class="border-b-2 border-indigo-500 py-2">
+                                        <p>{{ $array_followers[$i][0]->name }}</p>
+                                        <p>{{ $array_followers[$i][0]->name }}さんからフォローされました。</p>
+                                </div>
+                            @endfor
+                        @endif
                     </div>
                 </div>
             </div>
