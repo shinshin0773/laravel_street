@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-white leading-tight mb-3">
-            ゴールド購入
+            ゴールド購入 <span class="text-red-500">(ベータ版ですので、購入は控えてください)</span>
         </h2>
     </x-slot>
     <div class="text-center text-white bg-black font-bold" id="top">
@@ -19,7 +19,7 @@
 
             <div class="pt-4 md:9/12" style="margin-bottom: 600px">
                 <x-flash-message status="session('status')" />
-                <h1 class="pb-4 text-3xl mt-3">ゴールド購入</h1>
+                <h1 class="pb-4 text-3xl mt-3">ゴールド購入<span class="text-red-500">（ベータ版ですので購入はお控えください）</span></h1>
                 <div class="flex flex-wrap" style="margin-left: 70px">
                     {{-- それぞれの単価のボックス --}}
                     <div class="md:w-1/2 w-full flex py-4">

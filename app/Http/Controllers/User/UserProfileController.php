@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
 use App\Models\Follow;
 use App\Models\Posts;
@@ -14,6 +15,7 @@ use Stripe\Charge;
 
 class UserProfileController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +23,91 @@ class UserProfileController extends Controller
      */
     public function index()
     {
-        //
+        //ユーザー情報取得
+        $profile = Auth::user();
+
+        return view('user.profile.index',compact('profile'));
+    }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('user.profile.create');
     }
 
     /**
-     * Display a listing of the resource.
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //プロフィール画像アップロード
+        $dir = 'userProfile';
+        $file_name = $request->image->getClientOriginalName();
+        $file_path = 'storage/' . $dir . '/' . $file_name;
+        $request->file('image')->storeAs('public/' . $dir, $file_name);
+
+        $user = Auth::user();
+
+        //更新
+        $user->sns_account = $request->twitter_account;
+        $user->information = $request->information;
+        $user->file_path = $file_path;
+        $user->save();
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit()
+    {
+        $profile = Auth::user();
+        return view('user.profile.edit',compact('profile'));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+         //画像アップロード処理
+         $dir = 'userProfile';
+         $file_name = $request->image->getClientOriginalName();
+         $file_path = 'storage/' . $dir . '/' . $file_name;
+
+         // dd($request);
+         $profile = Auth::user();
+         $profile->name = $request->name;
+         $profile->information = $request->information;
+         $profile->sns_account = $request->sns_account;
+         $profile->file_path = $file_path;
+
+         //保存することができる
+         $profile->save();
+
+         return redirect()
+         ->route('user.profile.index')
+         ->with(['message' => 'プロフィール情報を更新しました。','status' => 'info']);
+    }
+
+
+    /**
+     * ポイント購入ページ
      *
      * @return \Illuminate\Http\Response
      */
@@ -106,56 +188,12 @@ class UserProfileController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
     {
         //
     }

@@ -20,6 +20,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('gold')->default(0);
+            $table->text('sns_account')->nullable();
+            $table->text('information')->nullable();
+            $table->text('file_path')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

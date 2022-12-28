@@ -23,7 +23,7 @@
                             <div class="lg:w-1/4 lg:p-4 my-3">
                                 <a href="{{ route('user.items.show',['item' => $post['id'],'artist_id' => $post['artist_profile_id']])}}">
                                     <div class="bg-white border-solid border-2 border-sky-500 rounded-md p-2 md:p-4">
-                                        <img src="{{ $post['file_path']}}" alt="サムネイル" class="post-image">
+                                        <img src="{{ asset($post['file_path'])}}" alt="サムネイル" class="post-image">
                                         <div class="mt-3">
                                             <div class="text-gray-700">名前：{{ $post['name'] }}</div>
                                             <div class="text-gray-700 post-content">内容：{{ $post['information']}}</div>
