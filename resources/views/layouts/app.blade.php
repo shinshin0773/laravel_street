@@ -20,9 +20,11 @@
         <meta property="og:url" content="https://street-sing.com/">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Street">
-        <meta property="og:description" content="「路上ライブは見つける時代から探す時代に・・・」をテーマにして開発しております。ユーザーはアーティストの開催情報、アーティストはユーザーに開催情報を共有することができます">
-        <meta property="og:site_name" content="ホームページのコーディング ポートフォリオ">
-        <meta property="og:image" content="public/images/toppage.png">
+        <meta property="og:description" content="「路上ライブは見つける時代から探す時代に・・・」従来の路上ライブは路上を歩いている人がたまたま見かけて立ち止まって見るようなものでした、
+        しかしこれからは探される時代になります。なぜなら「Street」があるからです。
+        これにより魅力的な人がよりピックアップされて人を集めることが可能になります。">
+        <meta property="og:site_name" content="路上ライブの開催情報を共有するWebアプリ「Street」">
+        <meta property="og:image" content="{{ asset('images/toppage.png') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>

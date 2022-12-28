@@ -9,7 +9,7 @@
 
         {{-- ストリート紹介文 --}}
         <div class="text-center" style="padding-top:8rem; padding-bottom: 8rem;" style="">
-            <h1 class="text-4xl">路上ライブは見る時代から探す時代に・・・</h1>
+            <h1 class="text-4xl">路上ライブは見つける時代から探す時代に・・・</h1><br>
             <h1 class="text-4xl mb-10">あなたのライブは探される。</h1>
 
             <div>
