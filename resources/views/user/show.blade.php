@@ -70,10 +70,18 @@
                                 </button>
                               </a>
 
+                                {{-- @php
+                                    $payment_url = "https://www.paypal.com/{$post->artistprofile->artist->payment_url}";
+                                    echo $payment_url;
+                                @endphp --}}
                               @if (Auth::id())
                               <div class="tooltip2 w-16 h-16 rounded-full bg-blue-300 text-white font-bold" style="text-align:center;line-height: 63px;">
-                                <p>投げ銭</p>
-                                <div class="description2 w-full">
+                                @if($post->artistprofile->artist->payment_url)
+                                    <a href="{{ $post->artistprofile->artist->payment_url }}"><p>投げ銭</p></a>
+                                @else
+                                    <p onclick="window.alert('このアーティストはPayment_URLが登録されていないので投げ銭はできません。'); return false;">投げ銭</p>
+                                @endif
+                                {{-- <div class="description2 w-full">
                                     <div class="w-1/2 flex mt-1.5">
                                         <img src="{{ asset('images/icons8-gold.png')}}" alt="gold" style="width: 20px; height:20px">
                                         <p class="mt-1 " class="inline" style="margin-right: 7px;">50Gold</p>
@@ -153,8 +161,8 @@
                                             <input type="hidden" name="artist_id" value="{{ $post->artistprofile->artist->id }}">
                                             <input type="submit" value="present" class="bg-blue-500 hover:bg-blue-700 text-white font-bold ml-3 px-4 rounded-full">
                                         </form>
-                                    </div>
-                                </div>
+                                    </div> --}}
+                                {{-- </div> --}}
                                 @endif
                             </div>
                             </div>

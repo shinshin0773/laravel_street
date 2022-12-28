@@ -47,6 +47,14 @@ Route::get('/notifications', [ArtistController::class,'notification'])
                 ->middleware(['auth:artists'])
                 ->name('profile.notifications'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
+Route::get('/settings', [ArtistProfileController::class,'settings'])
+                ->middleware(['auth:artists'])
+                ->name('profile.settings'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
+
+Route::post('/settingUpdate', [ArtistProfileController::class,'settingUpdate'])
+                ->middleware(['auth:artists'])
+                ->name('profile.settingUpdate'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
+
 // Route::resource('profile', ArtistProfileController::class)
 // ->middleware(['auth:artists'])->except(['show']);
 

@@ -21,6 +21,7 @@ class CreateArtistsTable extends Migration
             $table->string('password');
             $table->boolean('recognized')->default(false);
             $table->integer('gold')->default(0);
+            $table->text('payment_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes(); //テーブルのソフトデリート

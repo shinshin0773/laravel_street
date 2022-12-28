@@ -115,6 +115,7 @@ class ArtistProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
          //画像アップロード処理
         $dir = 'postImage';
         $file_name = $request->image->getClientOriginalName();
@@ -134,6 +135,35 @@ class ArtistProfileController extends Controller
         ->route('artist.profile.index')
         ->with(['message' => 'プロフィール情報を更新しました。','status' => 'info']);
     }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function settings()
+    {
+        $profile = Auth::user();
+        return view('artist.profile.setting',compact('profile'));
+    }
+
+    public function settingUpdate(Request $request)
+    {
+        // dd($request);
+        $artist = Auth::user();
+
+        $artist->name = $request->name;
+        $artist->email = $request->email;
+        $artist->payment_url = $request->payment_url;
+
+        $artist->save();
+
+        return redirect()->route('artist.profile.index')
+               ->with(['message' => '情報を変更しました',
+                      'status' => 'info']);
+    }
+
 
     /**
      * Remove the specified resource from storage.

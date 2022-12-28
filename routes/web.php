@@ -40,6 +40,7 @@ Route::prefix('user')->
         Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
         Route::post('/present',[ItemController::class, 'present'])->name('items.present');
         Route::get('/notification',[UserProfileController::class, 'notification'])->name('profile.notification');
+
 });
 
 Route::get('/',[ItemController::class,'index'])->name('items.index');

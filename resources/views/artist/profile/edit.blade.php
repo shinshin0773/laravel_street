@@ -29,6 +29,13 @@
                                 <input type="text" id="sns_account" name="sns_account" value="{{ $profile->sns_account }}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                         </div>
+                        {{-- <div class="p-2 w-1/2 mx-auto">
+                            <div class="relative">
+                                <label for="payment_url" class="leading-7 text-sm text-gray-600">決済URL</label>
+                                <input type="text" id="payment_url" name="payment_url" value="{{ $profile->artist->payment_url }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                            </div>
+                        </div> --}}
+
                         <div class="p-2 w-1/2 mx-auto">
                             <label for="profileIcon" class="leading-7 text-sm text-gray-600">ProfileIcon ※必須</label>
                             @if(empty($profile->file_path))
@@ -38,6 +45,7 @@
                             @endif
                             <input type="file" id="profileIcon" name="image" value="{{ asset($profile->file_path) }}">
                         </div>
+
                         <div>
                             {{-- @foreach($artist_profile as $profile)
                             <input type="hidden" id="userid" name="profile_id" value="{{ $profile->id }}">
