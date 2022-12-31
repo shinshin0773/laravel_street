@@ -162,6 +162,14 @@ class UserProfileController extends Controller
      */
     public function notification()
     {
+        $user = Auth::user();
+
+        dd($user->notifications);
+        // //全通知を取得
+        // foreach($user->notifications as $notification){
+        //     dd($notification->type);
+        // }
+
         //自分がフォローしているアーティストのIDを取得
         $followArtistsId = Follow::where('user_id', Auth::id())->get();
 

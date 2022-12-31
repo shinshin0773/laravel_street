@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Artist;
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
 use App\Models\ArtistProfile;
+use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use App\Models\Posts;
+use App\Notifications\InformationNotification;
 
 use function Symfony\Component\String\s;
 
@@ -110,6 +114,15 @@ class PostsController extends Controller
                     'finish_time' => $request->finishTime,
                     'file_path' => 'storage/' . $dir . '/' . $file_name ,
                 ]);
+
+                //通知
+                //InformationNotification 通知クラス フォロー中のユーザーに対して通知
+                $users = Follow::where('artist_id', Auth::id())->get();
+                foreach($users as $user){
+                    $follow_user = User::where('id', $user->user_id)->get();
+                    Notification::send($follow_user,new InformationNotification($post));
+                }
+
             });
         }catch(Throwable $e){
             Log::error($e);
