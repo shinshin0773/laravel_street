@@ -8,6 +8,7 @@ use App\Models\Follow;
 use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\DatabaseNotification;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
@@ -164,7 +165,7 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
 
-        dd($user->notifications);
+        // dd($user->notifications);
         // //全通知を取得
         // foreach($user->notifications as $notification){
         //     dd($notification->type);
@@ -193,6 +194,33 @@ class UserProfileController extends Controller
 
 
         return view('user.notification',compact('followArtistPostsList'));
+    }
+
+     /**
+     * 通知を既読にする
+     *
+     * @param DatabaseNotification $notification
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function read(DatabaseNotification $notification)
+    {
+        $notification->markAsRead();
+
+        return redirect($notification->data['url']);
+
+    }
+
+    /**
+     * 全ての通知を既読にする
+     *
+     * @param DatabaseNotification $notification
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function readAll(DatabaseNotification $notification)
+    {
+        auth()->user()->unreadNotifications->markAsRead();
+
+        return redirect(route('notifications.index'));
     }
 
     /**

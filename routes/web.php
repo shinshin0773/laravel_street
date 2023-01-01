@@ -40,6 +40,8 @@ Route::prefix('user')->
         Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
         Route::post('/present',[ItemController::class, 'present'])->name('items.present');
         Route::get('/notification',[UserProfileController::class, 'notification'])->name('profile.notification');
+        Route::post('/notification/read',[UserProfileController::class, 'read'])->name('profile.read');
+        Route::post('/notification/readAll',[UserProfileController::class, 'readAll'])->name('profile.readAll');
 
 });
 

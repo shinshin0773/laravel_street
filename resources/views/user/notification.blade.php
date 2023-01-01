@@ -18,24 +18,22 @@
                 </div>
                 <div id="myTabContent">
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        @if($followArtistPostsList === null)
-                            <div class="border-b-2 border-indigo-500 py-2">
-                                <p>まだ通知はありません</p>
-                            </div>
-                        @else
-                            @for($i = 0;$i < count($followArtistPostsList); $i++)
+                        @forelse(auth()->user()->notifications()->take(5)->get() as $notification)
                                 <div class="border-b-2 border-indigo-500 py-2">
                                     <p class="mb-2">最新の投稿があります</p>
-                                    <a href="{{ route('user.items.show',['item' => $followArtistPostsList[$i]['id'],'artist_id' => $followArtistPostsList[$i]->artist_profile_id])}}"">
+                                    <a href="{{ $notification->data['url'] }}">
                                         <div class="text-blue-700">
-                                            <p>{{ $followArtistPostsList[$i]['name'] }}</p>
-                                            <p>{{ $followArtistPostsList[$i]['information']}}</p>
-                                            <p>開催日時：{{ $followArtistPostsList[$i]['holding_time']->format('Y年m月d日 H時i分') }}</p>
+                                            <p>{{ $notification->data['name'] }}</p>
+                                            <p>{{ $notification->data['information'] }}</p>
+                                            <p>開催日時：{{ $notification->data['holding_time'] }}</p>
                                         </div>
                                     </a>
                                 </div>
-                            @endfor
-                        @endif
+                        @empty
+                            <div class="border-b-2 border-indigo-500 py-2">
+                                <p>まだ通知はありません</p>
+                            </div>
+                        @endforelse
                     </div>
 
                 </div>
