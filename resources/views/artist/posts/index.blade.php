@@ -19,6 +19,7 @@
                             {{-- <a href="{{ route('owner.products.edit',['product' => $product->id])}}"> --}}
                             <div class="border-solid bg-white border-2 border-sky-500 rounded-md p-2 md:p-4">
                                 <img src="{{asset($post->file_path)}}" alt="サムネイル" class="post-image">
+                                {{-- <img src="{{ $post->file_path }}" alt="サムネイル" class="post-image"> --}}
                                 <div class="mt-3">
                                     <div class="text-gray-700">名前：{{ $post->name }}</div>
                                     <div class="text-gray-700">内容：{{ $post->information }}</div>

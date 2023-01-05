@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use App\Models\Posts;
 use App\Notifications\InformationNotification;
+use Illuminate\Support\Facades\Storage;
 
 use function Symfony\Component\String\s;
 
@@ -102,7 +103,15 @@ class PostsController extends Controller
                 // アップロードされたファイル名を取得
                 $file_name = $request->file('image')->getClientOriginalName();
 
+                // $file = $request->file('image');
+                // Storage::disk('s3')->putFile('/', $file);
+
+                //AWS S3のバケットの'postImage'フォルダへアップロードする
+                // $file = $request->file('image');
+                // $path = Storage::disk('s3')->put('postImage', $file, 'public');
+
                 $request->file('image')->storeAs('public/' . $dir, $file_name);
+
                 $post = Posts::create([
                     'name' => $request->name,
                     'artist_profile_id' => $request->profile_id,
@@ -113,6 +122,7 @@ class PostsController extends Controller
                     'holding_time' => $request->holdingTime,
                     'finish_time' => $request->finishTime,
                     'file_path' => 'storage/' . $dir . '/' . $file_name ,
+                    // 'file_path' => Storage::disk('s3')->url($path),
                 ]);
 
                 //通知
