@@ -51,6 +51,7 @@ Route::get('/',[ItemController::class,'index'])->name('items.index');
 Route::get('/placeMap',[ItemController::class,'placeMap'])->name('items.placeMap');
 Route::get('show/{item}/{artist_id}',[ItemController::class, 'show'])->name('items.show');
 Route::get('map/{item}',[ItemController::class, 'showMap'])->name('items.showMap');
+Route::get('userArtistProfile/{artist_id}',[ItemController::class, 'showArtist'])->name('artist.profile');
 
 
 

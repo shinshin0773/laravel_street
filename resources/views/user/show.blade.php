@@ -171,17 +171,15 @@
 
                         <div class="flex flex-col sm:flex-row mt-10">
                             <div class="sm:w-1/3 text-center sm:pr-8 sm:py-8">
-                              <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
-                                {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
-                                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                                  <circle cx="12" cy="7" r="4"></circle>
-                                </svg> --}}
-                                @if ($post->artistprofile->file_path)
-                                    <img src="{{ asset($post->artistprofile->file_path) }}" alt="アイコン画像" srcset="" style="border-radius: 50%; height:100%; width: 100%;">
-                                @else
-                                    <img src="{{ asset('images/non-icon.png')}}" alt="アイコンなし" style="border-radius: 50%; height:100%; width: 100%;">
-                                @endif
-                              </div>
+                              <a href="{{ route('user.artist.profile',['artist_id' => $post->artistprofile->id] ) }}">
+                                <div class="w-20 h-20 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400">
+                                    @if ($post->artistprofile->file_path)
+                                        <img src="{{ asset($post->artistprofile->file_path) }}" alt="アイコン画像" srcset="" style="border-radius: 50%; height:100%; width: 100%;">
+                                    @else
+                                        <img src="{{ asset('images/non-icon.png')}}" alt="アイコンなし" style="border-radius: 50%; height:100%; width: 100%;">
+                                    @endif
+                               </div>
+                              </a>
                               <div class="flex flex-col items-center text-center justify-center">
                                 <div class="flex">
                                     <h2 class="font-medium title-font mt-4 text-gray-900 text-lg">{{$post->artistprofile->name}}</h2>

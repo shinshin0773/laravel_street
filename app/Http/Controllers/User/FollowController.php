@@ -127,7 +127,7 @@ class FollowController extends Controller
      */
     public function show($id)
     {
-        $artist_profile = ArtistProfile::where('artist_id', $id)->get();
+        $artist_profile = ArtistProfile::findOrFail($id);
         // dd($artist_profile['name']);
         return view('user.artistProfile',compact('artist_profile'));
     }

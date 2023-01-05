@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
 use App\Models\ArtistProfile;
 use App\Models\Follow;
 use App\Models\GoldPresent;
@@ -70,6 +71,15 @@ class ItemController extends Controller
         }
 
         return view('user.show', compact('post','likeCheck','likeCount','followCheck'));
+    }
+
+    //ユーザーから見たアーティストのプロフィール画面
+    public function showArtist($artist_profile_id){
+        //1つだけ取得
+        $artist_profile = ArtistProfile::findOrFail($artist_profile_id);
+
+        // dd($artist_profile->name);
+        return view('user.artistProfile',compact('artist_profile'));
     }
 
     public function showMap($id)

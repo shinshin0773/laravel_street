@@ -207,7 +207,6 @@ class UserProfileController extends Controller
         $notification->markAsRead();
 
         return redirect($notification->data['url']);
-
     }
 
     /**
