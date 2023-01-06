@@ -29,16 +29,16 @@
                                 @if($followCheck === false)
                                 <form action="{{ route('user.items.follow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="Follow" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+                                    <input type="submit" value="フォロー" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
                                 </form>
                                 @else
                                 <form action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
-                                    <input type="submit" value="unFollow" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-5 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="width:100px;">
+                                    <input type="submit" value="フォロー解除" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-5 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="width:100%;">
                                 </form>
                                 @endif
                               @else
-                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;"">Follow</button>
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;"">フォロー</button>
                               @endif
 
                               @if (Auth::id())
@@ -55,7 +55,7 @@
                                 </form>
                                 @endif
                                 @else
-                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:100px;">行きたい</button>
+                                <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:120px;">行きたい</button>
                               @endif
 
                               <button type="button" onclick="location.href='{{ route('user.items.showMap', $post->id, $post->artist_profile_id )}}'" class=" text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" style="margin-bottom: 13px;margin-right: 20px;">詳細Map</button>
@@ -200,7 +200,8 @@
                             </div>
                             <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-200 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                               <p class="eading-relaxed text-lg mb-4"><span class="mr-2" style="font-weight: bold;">SNSアカウント</span> {{$post->artistprofile->sns_account}}</p>
-                              <p class="leading-relaxed text-lg mb-4">＼全国各地！学園祭呼んで下さい📩／Vocal Group “マカロン” ことマイクアローン／太陽☀️
+                              <p class="leading-relaxed text-lg mb-4">
+                                {{-- ＼全国各地！学園祭呼んで下さい📩／Vocal Group “マカロン” ことマイクアローン／太陽☀️
                                 @sasayamataiyo
                                 剛輝💎
                                 @gokinokoe
@@ -208,7 +209,9 @@
                                 @syomagoodnight
                                  利治🍵
                                 @toshiharu_1125
-                                ／ファンネーム=メレンゲ🥚【DM:運営管理】</p>
+                                ／ファンネーム=メレンゲ🥚【DM:運営管理】 --}}
+                                {{$post->artistprofile->information}}
+                            </p>
                               <a class="text-indigo-500 inline-flex items-center">Learn More
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                   <path d="M5 12h14M12 5l7 7-7 7"></path>

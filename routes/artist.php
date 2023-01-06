@@ -43,14 +43,15 @@ Route::get('/dashboard', [ArtistController::class,'index'])
                 ->middleware(['auth:artists'])
                 ->name('dashboard'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
+//通知関連のルート
 Route::get('/notifications', [ArtistController::class,'notification'])
                 ->middleware(['auth:artists'])
                 ->name('profile.notifications'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
 
+//設定関連のルート
 Route::get('/settings', [ArtistProfileController::class,'settings'])
                 ->middleware(['auth:artists'])
                 ->name('profile.settings'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示
-
 Route::post('/settingUpdate', [ArtistProfileController::class,'settingUpdate'])
                 ->middleware(['auth:artists'])
                 ->name('profile.settingUpdate'); //middleware(['auth:artists'])->name('dashboard') artistsの権限を持っていたらdashboardを表示

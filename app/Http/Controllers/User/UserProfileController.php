@@ -51,7 +51,7 @@ class UserProfileController extends Controller
     {
         //プロフィール画像アップロード
         $dir = 'userProfile';
-        $file_name = $request->image->getClientOriginalName();
+        $file_name = $request->file('image')->getClientOriginalName();
         $file_path = 'storage/' . $dir . '/' . $file_name;
         $request->file('image')->storeAs('public/' . $dir, $file_name);
 
@@ -88,8 +88,9 @@ class UserProfileController extends Controller
     {
          //画像アップロード処理
          $dir = 'userProfile';
-         $file_name = $request->image->getClientOriginalName();
+         $file_name = $request->file('image')->getClientOriginalName();
          $file_path = 'storage/' . $dir . '/' . $file_name;
+         $request->file('image')->storeAs('public/' . $dir, $file_name);
 
          // dd($request);
          $profile = Auth::user();

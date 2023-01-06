@@ -23,6 +23,7 @@ class CreateArtistProfilesTable extends Migration
             $table->text('information')->nullable();
             $table->string('sns_account')->nullable();
             $table->string('file_path')->nullable();
+            $table->string('movie_file_path')->nullable();
             $table->timestamps();
         });
     }

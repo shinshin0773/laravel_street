@@ -16,7 +16,7 @@
                             @if(empty($profile->file_path))
                                 <img class="object-cover object-center rounded" alt="icon" src="{{ asset('images/non-icon.png')}}">
                             @else
-                                <img class="object-cover object-center rounded" alt="icon" src="{{asset($profile->file_path)}}">
+                                <img class="object-cover object-center rounded" alt="icon" src="{{ asset($profile->file_path) }}">
                             @endif
                           </div>
                           <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">

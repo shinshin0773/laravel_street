@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="md:flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-white leading-tight mb-3">
+            {{-- <h2 class="font-semibold text-xl text-white leading-tight mb-3">
                 投稿一覧
-            </h2>
+            </h2> --}}
             <div>
                 <form method="get" action="{{ route('user.items.index')}}">
                     <div class="md:flex">
@@ -53,7 +53,7 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="md:bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 md:bg-white border-b border-gray-200">

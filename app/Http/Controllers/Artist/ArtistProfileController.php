@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Artist;
 
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -117,16 +118,36 @@ class ArtistProfileController extends Controller
     {
         // dd($request);
          //画像アップロード処理
-        $dir = 'postImage';
-        $file_name = $request->image->getClientOriginalName();
-        $file_path = 'storage/' . $dir . '/' . $file_name;
 
-        // dd($request);
+
+
+        if(is_null($request->file('image'))){
+            $file_path = null;
+        }else {
+            $dir = 'artistImage';
+            $file_name = $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('public/' . $dir, $file_name);
+            $file_path = 'storage/' . $dir . '/' . $file_name;
+        }
+
+        //   //動画アップロード AWS S3
+        //   $file = $request->file('movie');
+        //   dd($file);
+
+        if(is_null($request->file('movie'))){
+            $upload_movie_path = null;
+        }else {
+            //動画アップロード AWS S3
+            $file = $request->file('movie');
+            $upload_movie_path = Storage::disk('s3')->put('profileMovies', $file, 'public');
+        }
+
         $profile = ArtistProfile::findOrFail($id);
         $profile->name = $request->name;
         $profile->information = $request->information;
         $profile->sns_account = $request->sns_account;
         $profile->file_path = $file_path;
+        $profile->movie_file_path = Storage::disk('s3')->url($upload_movie_path);
 
         //保存することができる
         $profile->save();

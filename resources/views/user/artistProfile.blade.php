@@ -31,6 +31,13 @@
                             {{-- @endforeach --}}
                           </div>
                         </div>
+                        @if($artist_profile->movie_file_path)
+                            <div>
+                                <h1 class="title-font font-bold text-xl text-black leading-tight mb-3">おすすめ動画</h1>
+                                <video controls src="{{ $artist_profile->movie_file_path }}"></video>
+                            </div>
+                        @else
+                        @endif
                       </section>
                 </div>
             </div>

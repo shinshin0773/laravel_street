@@ -35,7 +35,7 @@
                 <x-input id="sns_account" class="block mt-1 w-full" type="text" name="sns_account" :value="old('sns_account')" />
             </div>
 
-            <!-- Confirm Password -->
+            <!-- プロフィール画像 -->
             <div class="mt-4">
                 <x-label for="thumbnail" :value="__('Thumbnail')" />
 
@@ -43,10 +43,6 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('artist.login') }}">
-                    {{ __('Already registered?') }}
-                </a> --}}
-
                 <x-button class="ml-4">
                     {{ __('OK') }}
                 </x-button>

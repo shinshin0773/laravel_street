@@ -46,6 +46,11 @@
                             <input type="file" id="profileIcon" name="image" value="{{ asset($profile->file_path) }}">
                         </div>
 
+                        <div class="p-2 w-1/2 mx-auto">
+                            <label for="profileIcon" class="leading-7 text-sm text-gray-600">Movie</label><br>
+                            <input type="file" name="movie">
+                        </div>
+
                         <div>
                             {{-- @foreach($artist_profile as $profile)
                             <input type="hidden" id="userid" name="profile_id" value="{{ $profile->id }}">
