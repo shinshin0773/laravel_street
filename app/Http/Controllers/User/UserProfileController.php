@@ -4,8 +4,13 @@ namespace App\Http\Controllers\User;
 
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\Controller;
+use App\Models\ArtistProfile;
 use App\Models\Follow;
+use App\Models\Likes;
 use App\Models\Posts;
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\DatabaseNotification;
@@ -27,9 +32,47 @@ class UserProfileController extends Controller
         //ユーザー情報取得
         $profile = Auth::user();
 
-        return view('user.profile.index',compact('profile'));
-    }
+        //フォローしているアーティスト数をカウント
+        $followArtistsId = Follow::select('artist_id')->where('user_id', $profile->id)->get();
 
+        $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
+            $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->paginate(3);
+            return $profiles;
+        });
+        if($followArtistsId->count()){
+            //フォロー中のアーティストのプロフィール情報を取得
+            $followArtistProfileList = $followArtistsId->map(function ($item, $key) {
+                $profiles =  ArtistProfile::where('artist_id', $item->artist_id)->get();
+                return $profiles;
+            });
+            for($i=0; $i < count($followArtistProfileList); $i++){
+                    $followArtistProfiles[] = $followArtistProfileList[$i][0];
+            }
+        }else {
+            $followArtistProfiles = [];
+        }
+
+        //参戦予定を取得
+        $plans = Likes::where('user_id', $profile->id)->get();
+
+        if($plans->count()){
+            //フォロー中のアーティストIDと一致した投稿を取得
+            $planPosts = $plans->map(function ($item, $key) {
+                $posts =  Posts::where('id', $item->post_id)->get();
+                return $posts;
+            });
+            for($i=0; $i < count($planPosts); $i++){
+                    for($j = 0; $j < count($planPosts[$i]); $j++){
+                        $planPostsList[] = $planPosts[$i][$j];
+                    }
+            }
+            array_multisort( array_map( "strtotime", array_column( $planPostsList, "holding_time" ) ), SORT_ASC, $planPostsList ) ;
+        }else {
+            $planPostsList = [];
+        }
+
+        return view('user.profile.index',compact('profile','followArtistProfiles','planPostsList'));
+    }
 
     /**
      * Show the form for creating a new resource.

@@ -15,4 +15,5 @@ class Likes extends Model
         'artist_id',
         'created_at'
     ];
+
 }

@@ -78,8 +78,23 @@ class ItemController extends Controller
         //1つだけ取得
         $artist_profile = ArtistProfile::findOrFail($artist_profile_id);
 
+
+        //パラメータで取得したポストを自分がフォローしているか確認
+        $follow = Follow::where('artist_id', $artist_profile_id)->where('user_id', Auth::id())->first();
+
+        //Followテーブルに指定のアーティストIDとログイン中のユーザーIDがあれば
+        $followCheck = false;
+        if($follow) {
+            $followCheck = true;
+        } else {
+            $followCheck = false;
+        }
+
+        $follower = Follow::where('artist_id', $artist_profile_id)->get();
+
+
         // dd($artist_profile->name);
-        return view('user.artistProfile',compact('artist_profile'));
+        return view('user.artistProfile',compact('artist_profile','followCheck','follower'));
     }
 
     public function showMap($id)

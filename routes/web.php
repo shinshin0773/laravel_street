@@ -36,7 +36,7 @@ Route::prefix('user')->
         Route::post('show/{item}/unfollow',[FollowController::class, 'unfollow'])->name('items.unfollow');
         Route::get('/followList',[FollowController::class, 'index'])->name('items.followList');
         Route::get('/showPoint',[UserProfileController::class, 'showPoint'])->name('items.showPoint');
-        Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
+        // Route::get('/followList/{artist_id}/profile',[FollowController::class, 'show'])->name('items.artist_profile');
         Route::post('/charge',[UserProfileController::class, 'charge'])->name('items.charge');
         Route::post('/present',[ItemController::class, 'present'])->name('items.present');
         Route::get('/notification',[UserProfileController::class, 'notification'])->name('profile.notification');

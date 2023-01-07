@@ -57,8 +57,8 @@
                             @foreach($followArtistProfiles as $profile)
                             <li class="flex w-full text-gray-300 cursor-pointer items-center mb-6">
                                 <div class="flex">
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
+                                    <a href="{{ route('user.artist.profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
+                                    <a href="{{ route('user.artist.profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
                                 </div>
                                 <form style="margin-top:1.5px;" action="{{ route('user.items.unfollow',$profile['artist_id'] )}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
@@ -71,7 +71,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
+            {{-- <div class="w-64 z-40 absolute bg-gray-800 shadow md:h-full flex-col justify-between sm:hidden transition duration-150 ease-in-out" id="mobile-nav">
                     <ul class="mt-12">
                         @if($followArtistProfiles === null)
                             <div class="mx-auto">
@@ -80,8 +80,8 @@
                             @foreach($followArtistProfiles as $profile)
                             <li class="flex w-full text-gray-300 cursor-pointer items-center mb-6">
                                 <div class="flex">
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
-                                    <a href="{{ route('user.items.artist_profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
+                                    <a href="{{ route('user.artist.profile',$profile['artist_id'])}}"><img src="{{ asset($profile['file_path'] ) }}" alt="アイコン画像" srcset="" style="border-radius: 50%;width: 30px;height: 30px;margin-right:40px;"></a>
+                                    <a href="{{ route('user.artist.profile',$profile['artist_id'])}}"><h1 class="text-sm" style="margin-top: 5px;margin-right: 25px;">{{ $profile['name']}}</h1></a>
                                 </div>
                                 <form style="margin-top:1.5px;" action="{{ route('user.items.unfollow',$post->artist_profile_id)}}" method="POST"  style="margin-bottom: 10px;">
                                     @csrf
@@ -91,7 +91,7 @@
                             @endforeach
                         @endif
                     </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-app-layout>

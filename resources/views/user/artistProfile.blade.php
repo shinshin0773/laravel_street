@@ -1,46 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('Profile') }}
-        </h2>
+<x-profile :name='$artist_profile->name' :snsAccount='$artist_profile->sns_account' :information='$artist_profile->information'>
+    <x-slot name="image">
+        <img alt="..." src="{{ asset($artist_profile->file_path) }}" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" style="width: 150px;height:150px; border-radius:50%;">
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <section class="text-gray-600 body-font">
-                        <x-flash-message status="session('status')" />
-                        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                            {{-- @foreach($artist_profile as $artist_profile) --}}
-                            @if(empty($artist_profile->file_path))
-                                <img class="object-cover object-center rounded" alt="icon" src="{{ asset('images/non-icon.png')}}">
-                            @else
-                                <img class="object-cover object-center rounded" alt="icon" src="{{asset($artist_profile->file_path)}}">
-                            @endif
-                          </div>
-                          <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                                {{$artist_profile->name}}
-                            </h1>
-                            <p class="mb-8 leading-relaxed">情報：{{$artist_profile->information}}</p>
-                            @if($artist_profile->sns_account)
-                              <p class="mb-8 leading-relaxed" style="font-size:1.3rem"><img src="{{ asset('images/sns-icon.png')}}" class="mr-2" style="width: 1.5rem; display:inline;">{{ $artist_profile->sns_account }}</p>
-                            @endif
-                            {{-- @endforeach --}}
-                          </div>
-                        </div>
-                        @if($artist_profile->movie_file_path)
-                            <div>
-                                <h1 class="title-font font-bold text-xl text-black leading-tight mb-3">おすすめ動画</h1>
-                                <video controls src="{{ $artist_profile->movie_file_path }}"></video>
-                            </div>
-                        @else
-                        @endif
-                      </section>
-                </div>
-            </div>
+    <x-slot name="button">
+        @if (Auth::id())
+            @if($followCheck === false)
+            <form action="{{ route('user.items.follow',$artist_profile->id )}}" method="POST"  style="margin-bottom: 10px;">
+                @csrf
+                <input type="submit" value="フォロー" class="inline-flex text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+            </form>
+            @else
+            <form action="{{ route('user.items.unfollow',$artist_profile->id )}}" method="POST"  style="margin-bottom: 10px;">
+                @csrf
+                <input type="submit" value="フォロー解除" class="inline-flex bg-white text-red-600 border-2 border-red-600 py-2 px-5 focus:outline-none hover:bg-red-300 rounded-lg text-sm">
+            </form>
+            @endif
+        @else
+            <button onclick="alertLogin()" class="block text-white bg-red-600 border-0 py-2 px-6 focus:outline-none hover:bg-red-300 rounded-lg text-sm" style="margin-bottom: 13px;width:120px;">フォロー</button>
+        @endif
+    </x-slot>
+    <x-slot name="count">
+        <div class="mr-4 p-3 text-center">
+            <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ count($follower) }}</span><span class="text-sm text-blueGray-400">フォロワー</span>
         </div>
-    </div>
-</x-app-layout>
+    </x-slot>
+    <x-slot name="contents">
+        @if($artist_profile->movie_file_path)
+            <div>
+                <h1 class="title-font font-bold text-xl text-black leading-tight mb-3">おすすめ動画</h1>
+                <video controls src="{{ $artist_profile->movie_file_path }}"></video>
+            </div>
+        @endif
+    </x-slot>
+</x-profile>

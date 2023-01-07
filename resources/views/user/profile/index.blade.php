@@ -1,40 +1,67 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-white leading-tight">
-            {{ __('プロフィール') }}
-        </h2>
+<x-profile :name='$profile->name' :snsAccount='$profile->sns_account' :information='$profile->information'>
+    <x-slot name="image">
+        <img alt="..." src="{{ asset($profile->file_path) }}" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px" style="width: 150px;height:150px; border-radius:50%;">
     </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <section class="text-gray-600 body-font">
-                        <x-flash-message status="session('status')" />
-                        <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                          <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                            @if(empty($profile->file_path))
-                                <img class="object-cover object-center rounded" alt="icon" src="{{ asset('images/non-icon.png')}}">
-                            @else
-                                <img class="object-cover object-center rounded" alt="icon" src="{{ asset($profile->file_path) }}">
-                            @endif
-                          </div>
-                          <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                            <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-                                {{$profile->name}}
-                            </h1>
-                            <p class="mb-8 leading-relaxed">情報：{{$profile->information}}</p>
-                            @if($profile->sns_account)
-                              <p class="mb-8 leading-relaxed" style="font-size:1.3rem"><img src="{{ asset('images/sns-icon.png')}}" class="mr-2" style="width: 1.5rem; display:inline;">{{ $profile->sns_account }}</p>
-                            @endif
-                            <div class="flex justify-center">
-                              <button onclick="location.href='{{ route('user.profile.edit') }}'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集</button>
-                            </div>
-                          </div>
-                        </div>
-                      </section>
+    <x-slot name="button">
+        <button onclick="location.href='{{ route('user.profile.edit') }}'" class="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+            編集
+        </button>
+    </x-slot>
+    <x-slot name="count">
+        <div class="mr-4 p-3 text-center">
+            <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ count($followArtistProfiles) }}</span><span class="text-sm text-blueGray-400">フォロー中</span>
+        </div>
+        <div class="mr-4 p-3 text-center">
+            <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">{{ count($planPostsList) }}</span><span class="text-sm text-blueGray-400">参戦予定</span>
+        </div>
+    </x-slot>
+    <x-slot name="contents">
+        <h1 class="mb-3 title-font font-bold text-lg">参戦予定</h1>
+        @foreach($planPostsList as $plan)
+            <div class="flex mb-3">
+                <div class="rounded-full bg-black mr-3 inline-grid text-center content-center" style="width: 60px;height:60px">
+                    <span class="text-white font-bold">{{ date('m/d',  strtotime($plan['holding_time']))}}</span>
+                </div>
+                <div class="rounded-md border-solid border-2 border-gray-500 p-2 w-9/12">
+                    <h1>{{ $plan['name'] }}</h1>
+                    <p>{{ $plan['information'] }}</p>
+                    <p>{{ $plan['sns_account'] }}</p>
                 </div>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+        @endforeach
+    </x-slot>
+    <x-slot name="list">
+        <div class="flow-root">
+            <h1 class="mb-3 title-font font-bold text-lg">フォローリスト</h1>
+            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                @if(count($followArtistProfiles) === 0)
+                    <span>まだ誰もフォローしていません</span>
+                @else
+                    @foreach($followArtistProfiles as $profile)
+                        <li class="py-3 sm:py-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="flex-shrink-0">
+                                    <img class="w-8 h-8 rounded-full" src="{{ asset($profile->file_path) }}" alt="アイコン">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        {{ $profile->name }}
+                                    </p>
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        {{ $profile->sns_account }}
+                                    </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                    <form action="{{ route('user.items.unfollow',$profile->artist_id )}}" method="POST"  style="margin-bottom: 10px;">
+                                        @csrf
+                                        <input type="submit" value="フォロー解除" class="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150">
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    @endforeach
+                @endif
+            </ul>
+       </div>
+    </x-slot>
+</x-profile>

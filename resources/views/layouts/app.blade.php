@@ -7,6 +7,11 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+         <!-- Tamplate -->
+         <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
+         <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -17,7 +22,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
         <!-- ページのプロパティ情報 -->
-        <meta property="og:url" content="https://street-sing.com/">
+        <meta property="og:url" content="https://street-sing.com/*">
         <meta property="og:type" content="website">
         <meta property="og:title" content="Street">
         <meta property="og:description" content="「路上ライブは見つける時代から探す時代に・・・」従来の路上ライブは路上を歩いている人がたまたま見かけて立ち止まって見るようなものでした、
