@@ -49,7 +49,7 @@
                     {{ $name }}
                   </h3>
                   <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                    <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+                    <img src="{{ asset('images/twitter-icon.png')}}" alt="icon" class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"  style="width: 20px;height:20px;">
                     {{ $snsAccount }}
                   </div>
                 </div>
