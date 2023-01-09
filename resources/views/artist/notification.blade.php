@@ -39,21 +39,18 @@
                         @endif
                     </div>
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                        @if($array_likes[0] === null)
-                            <div class="border-b-2 border-indigo-500 py-2">
-                                <p>まだいいねはありません</p>
-                            </div>
-                        @else
-                            @for($i = 0;$i < count($array_likes); $i++)
+                            @if($array_like_users[0] === null)
                                 <div class="border-b-2 border-indigo-500 py-2">
-                                    {{-- <p>{{ $array_likes[$i][0]}}</p> --}}
-                                    <p>{{ $array_likes[$i][0]->name}}がいく</p>
-                                    <p class="text-lg mt-2">Content</p>
-                                    <p class="text-sm">{{ $array_posts[$i][0]->information }}</p>
-                                    <p class="text-sm">{{ $array_posts[$i][0]->place }}</p>
+                                    <p>まだ通知はありません</p>
                                 </div>
-                            @endfor
-                        @endif
+                            @else
+                                @for($i=0;$i < count($array_like_users);$i++)
+                                    <div class="border-b-2 border-indigo-500 py-2">
+                                        <p>{{ $array_like_posts[$i][0]->information }}に</p>
+                                        <p>{{ $array_like_users[$i][0]->name }}がいく</p>
+                                    </div>
+                                @endfor
+                            @endif
                     </div>
                     <div class="hidden p-4 bg-gray-50 rounded-lg dark:bg-gray-800" id="settings" role="tabpanel" aria-labelledby="settings-tab">
                         @if($array_followers[0] === null)

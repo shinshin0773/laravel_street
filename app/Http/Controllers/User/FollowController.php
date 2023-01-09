@@ -71,7 +71,7 @@ class FollowController extends Controller
     //フォロー処理
     public function follow($id)
     {
-        Follow::create([
+        $information = Follow::create([
             'user_id' => Auth::id(),
             'artist_id' => $id,
         ]);

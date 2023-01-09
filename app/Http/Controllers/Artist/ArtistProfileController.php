@@ -119,10 +119,10 @@ class ArtistProfileController extends Controller
         // dd($request);
          //画像アップロード処理
 
-
+        // dd($request->file('movie'));
 
         if(is_null($request->file('image'))){
-            $file_path = null;
+            $file_path = $request->initialPath;
         }else {
             $dir = 'artistImage';
             $file_name = $request->file('image')->getClientOriginalName();
@@ -134,20 +134,24 @@ class ArtistProfileController extends Controller
         //   $file = $request->file('movie');
         //   dd($file);
 
+        //プロフィール情報を取得
+        $profile = ArtistProfile::findOrFail($id);
+
         if(is_null($request->file('movie'))){
-            $upload_movie_path = null;
+            $profile->movie_file_path = null;
         }else {
             //動画アップロード AWS S3
             $file = $request->file('movie');
             $upload_movie_path = Storage::disk('s3')->put('profileMovies', $file, 'public');
+            $profile->movie_file_path = Storage::disk('s3')->url($upload_movie_path);
         }
 
-        $profile = ArtistProfile::findOrFail($id);
+
         $profile->name = $request->name;
         $profile->information = $request->information;
         $profile->sns_account = $request->sns_account;
         $profile->file_path = $file_path;
-        $profile->movie_file_path = Storage::disk('s3')->url($upload_movie_path);
+        // $profile->movie_file_path = Storage::disk('s3')->url($upload_movie_path);
 
         //保存することができる
         $profile->save();

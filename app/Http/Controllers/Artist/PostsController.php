@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use App\Models\Posts;
-use App\Notifications\InformationNotification;
+use App\Notifications\PostNotification;
 use Illuminate\Support\Facades\Storage;
 
 use function Symfony\Component\String\s;
@@ -130,7 +130,7 @@ class PostsController extends Controller
                 $users = Follow::where('artist_id', Auth::id())->get();
                 foreach($users as $user){
                     $follow_user = User::where('id', $user->user_id)->get();
-                    Notification::send($follow_user,new InformationNotification($post));
+                    Notification::send($follow_user,new PostNotification($post));
                 }
 
             });

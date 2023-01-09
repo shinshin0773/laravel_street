@@ -62,6 +62,6 @@
                     @endforeach
                 @endif
             </ul>
-       </div>
+        </div>
     </x-slot>
 </x-profile>

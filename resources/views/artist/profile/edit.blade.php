@@ -39,11 +39,12 @@
                         <div class="p-2 w-1/2 mx-auto">
                             <label for="profileIcon" class="leading-7 text-sm text-gray-600">ProfileIcon ※必須</label>
                             @if(empty($profile->file_path))
-                             <img src="{{ asset('images/non_image')}}">
+                                <img src="{{ asset('images/non_image')}}">
                             @else
-                             <img src="{{ asset($profile->file_path)}}" style="width: 13rem">
+                                <img src="{{ asset($profile->file_path)}}" style="width: 13rem">
                             @endif
-                            <input type="file" id="profileIcon" name="image" value="{{ asset($profile->file_path) }}">
+                                <input type="hidden" name="initialPath" value="{{ $profile->file_path }}">
+                                <input type="file" id="profileIcon" name="image" value="{{ asset($profile->file_path) }}">
                         </div>
 
                         <div class="p-2 w-1/2 mx-auto">

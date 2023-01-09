@@ -58,14 +58,37 @@ class ArtistController extends Controller
         }
 
 
-        if($likes_collection->count()){
-            foreach($likes_collection as $collection){
-                $array_likes[] = User::where('id', $collection->user_id)->get();
-                $array_posts[] = Posts::where('id', $collection->post_id)->get();
+        // if($likes_collection->count()){
+        //     foreach($likes_collection as $collection){
+        //         $array_likes[] = User::where('id', $collection->user_id)->get();
+        //         $array_posts[] = Posts::where('id', $collection->post_id)->get();
+        //     }
+        // }else {
+        //     $array_likes[] = null;
+        //     $array_posts[] = null;
+        // }
+
+        $like_users = [];
+        $like_posts = [];
+        //  全通知を取得
+        foreach (Auth::user()->notifications as $notification) {
+            $users = $notification->data['user_id'];
+            $posts = $notification->data['post_id'];
+
+            array_push($like_users,$users);
+            array_push($like_posts,$posts);
+        }
+
+        if(count($like_users) && count($like_posts)){
+            foreach($like_users as $user){
+                $array_like_users[] = User::where('id', $user)->get();
+            }
+            foreach($like_posts as $post){
+                $array_like_posts[] = Posts::where('id', $post)->get();
             }
         }else {
-            $array_likes[] = null;
-            $array_posts[] = null;
+            $array_like_users[] = null;
+            $array_like_posts[] = null;
         }
 
         if($followers_collection->count()){
@@ -89,7 +112,7 @@ class ArtistController extends Controller
 
         // dd($array_likes);
 
-        return view('artist.notification',compact('array_users','array_presents','array_likes','array_posts','array_followers'));
+        return view('artist.notification',compact('array_users','array_presents','array_like_users','array_like_posts','array_followers'));
     }
 
     /**

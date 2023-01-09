@@ -2,22 +2,24 @@
 
 namespace App\Notifications;
 
-use App\Models\Posts;
+use App\Models\Likes;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InformationNotification extends Notification
+class LikeNotification extends Notification
 {
     use Queueable;
 
-    private Posts $information;
+    private Likes $information;
 
     /**
      * Create a new notification instance.
      *
      * @param Posts $information
      */
-    public function __construct(Posts $information)
+    public function __construct(Likes $information)
     {
         $this->information = $information;
     }
@@ -42,12 +44,12 @@ class InformationNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'name' => $this->information->name,
-            'information' => $this->information->information,
-            'place' => $this->information->place,
-            'holding_time' => $this->information->holding_time,
+            'user_id' => $this->information->user_id,
+            'artist_id' => $this->information->artist_id,
+            'post_id' => $this->information->post_id,
+            'created_at' => $this->information->created_at,
              //  通知からリンクしたいURLがあれば設定しておくと便利
-             'url' => route('user.items.show', ['item' => $this->information->id,'artist_id' => $this->information->artist_profile_id ])
+            //  'url' => route('user.items.show', ['item' => $this->information->id,'artist_id' => $this->information->artist_profile_id ])
         ];
     }
 }

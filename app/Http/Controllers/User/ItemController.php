@@ -13,6 +13,9 @@ use App\Models\Posts;
 use App\Models\User;
 use App\Models\Likes;
 
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\LikeNotification;
+
 
 class ItemController extends Controller
 {
@@ -90,11 +93,22 @@ class ItemController extends Controller
             $followCheck = false;
         }
 
-        $follower = Follow::where('artist_id', $artist_profile_id)->get();
+        $followers = Follow::where('artist_id', $artist_profile_id)->get();
 
+        if(!$followers->isEmpty()){
+            foreach($followers as $follower){
+                $follower_list[] = User::where('id',$follower->user_id)->get();
+            }
+        }else {
+            $follower_list[] = [];
+        }
 
+        // dd($follower_list);
+        // foreach($follower_list as $profile){
+        //     dd($profile[0]->name);
+        // }
         // dd($artist_profile->name);
-        return view('user.artistProfile',compact('artist_profile','followCheck','follower'));
+        return view('user.artistProfile',compact('artist_profile','followCheck','follower_list'));
     }
 
     public function showMap($id)
@@ -153,11 +167,18 @@ class ItemController extends Controller
 
         $post->save();
 
-        Likes::create([
+        $information = Likes::create([
             'user_id' => Auth::id(),
             'post_id' => $id,
             'artist_id' => $request->artist_id,
           ]);
+
+
+        //いいねを対象アーティスト宛に通知登録
+        $artist = Artist::find($request->artist_id);
+        $artist->notify(
+            new LikeNotification($information)
+        );
 
         return redirect()
         ->back();
