@@ -18,11 +18,18 @@
         <form method="POST" action="{{ route('artist.login') }}">
             @csrf
 
-            <!-- Email Address -->
+            {{-- <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            </div> --}}
+
+            <!-- UserId -->
+            <div>
+                <x-label for="userId" :value="__('UserID')" />
+
+                <x-input id="userId" class="block mt-1 w-full" type="text" name="userId" :value="old('userId')" required autofocus />
             </div>
 
             <!-- Password -->

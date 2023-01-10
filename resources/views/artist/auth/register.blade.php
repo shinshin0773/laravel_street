@@ -16,9 +16,16 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" :value="__('AccountID')" />
+                <x-label for="name" :value="__('Name')" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+            </div>
+
+             <!-- UserId -->
+             <div>
+                <x-label for="userId" :value="__('UserID UserId こちらは認証で使用します')" />
+
+                <x-input id="userId" class="block mt-1 w-full" type="text" name="userId" :value="old('userId')" required autofocus />
             </div>
 
             <!-- Email Address -->

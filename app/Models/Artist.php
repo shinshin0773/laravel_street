@@ -22,6 +22,7 @@ class Artist extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'userId',
         'password',
     ];
 

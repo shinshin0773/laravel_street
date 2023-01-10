@@ -21,11 +21,11 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-            <!-- Email Address -->
+            <!-- userID -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="userId" :value="__('userID こちらは認証で使用します')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="userId" class="block mt-1 w-full" type="text" name="userId" :value="old('userId')" required />
             </div>
 
             <!-- Password -->

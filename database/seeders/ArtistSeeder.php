@@ -21,6 +21,7 @@ class ArtistSeeder extends Seeder
         DB::table('artists')->insert([
             [
                 'name' => 'Shin',
+                'userId' => 'test1@test.com',
                 'email' => 'test1@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => True,
@@ -28,6 +29,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Hime',
+                'userId' => 'test2@test.com',
                 'email' => 'test2@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => False,
@@ -35,6 +37,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Daitou',
+                'userId' => 'test3@test.com',
                 'email' => 'test3@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => True,
@@ -42,6 +45,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Ryu',
+                'userId' => 'test4@test.com',
                 'email' => 'test4@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => False,
@@ -49,6 +53,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Hide',
+                'userId' => 'test5@test.com',
                 'email' => 'test5@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => True,
@@ -56,6 +61,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Tagawa',
+                'userId' => 'test6@test.com',
                 'email' => 'test6@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => True,
@@ -63,6 +69,7 @@ class ArtistSeeder extends Seeder
             ],
             [
                 'name' => 'Kuwa',
+                'userId' => 'test7@test.com',
                 'email' => 'test7@test.com',
                 'password' => Hash::make('password123'), //Hashは暗号化
                 'recognized' => False,

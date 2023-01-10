@@ -35,11 +35,13 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:artists',
+            'userId' => 'required|string|max:255|unique:artists',
             'password' => 'required|string|confirmed|min:8',
         ]);
 
         Auth::guard('artists')->login($user = Artist::create([
             'name' => $request->name,
+            'userId' => $request->userId,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]));
